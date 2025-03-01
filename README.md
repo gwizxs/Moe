@@ -1,54 +1,52 @@
-# React + TypeScript + Vite
+### Данный проект представляет собой аналог кипопоиска со всеми ее базовыми функциями, ниже можно узнать архитектуру проекта и узнать некоторые подходы для своих проектов
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+
+
+# Frontend
+
+### Документация
+- [Самописная classNames](./src/shared/library/classNames/README.md) 
+- [Интернационализация](./src/shared/config/i18n/README.md)
+- [Внедрение новой темы](./src/app/styles/themes/README.md)
+
+
+---
+
+
+### пример создания новой страницы 
+
+при создании новой страницы нужно создавать рядом файл с  .lazy чтобы страница скачивалась у пользователя не сразу, а только когда он зайдет на страницу
+
+
+как добавить в путь в роутер? 
+у нас есть конфиг где нужно добавлять роуты shared/config/RouteConfig.ts
+
+сначала заполняем енам с названием, после заполняем AppRoutes.путь который ты написал -> после чего заполняем routeconfig где уже ты пишешь 
+
+```typescript
+[AppRoutes.путь] : {
+path: путь
+element: компонент 
+}
 ```
+после чего все заработает, остальное для создания пути трогать не нужно кроме набара для добавления элемента 
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Если страница не должна иметь sidebar и navbar в путях добавляем  -  hideLayout: true,
+ 
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### При создании новой страницы нужно добавлять компонент Page 
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+```typescript
+<Page>
+    <Component>
+          <Filter/>
+    <Component>
+<Page/>
+```  
+## Это обязательно делать чтобы верстка не слетала 

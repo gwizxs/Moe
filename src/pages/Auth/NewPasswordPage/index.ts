@@ -1,0 +1,1 @@
+export { NewPasswordPageLazy as NewPasswordPage } from "./ui/NewPasswordPage.lazy";

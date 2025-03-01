@@ -1,0 +1,1 @@
+export { LandingPageLazy as LandingPage } from "./ui/LandingPage.lazy";

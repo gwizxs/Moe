@@ -1,0 +1,21 @@
+.navbar {
+    width: 100%;
+    height: var(--navbar-height);
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border);
+
+    .row {
+        padding: 20px;
+    }
+}
+
+.burMenu {
+    font-size: 24px;
+    margin: 0 1.8em 0 0.6em;
+    cursor: pointer;
+}
+
+.bell {
+    margin-right: 20px;
+    font-size: 24px;
+}

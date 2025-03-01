@@ -1,0 +1,1 @@
+export { VacancyPageLazy as VacancyPage } from "./ui/VacancyPage.lazy";
