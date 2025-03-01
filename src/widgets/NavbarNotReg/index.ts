@@ -1,1 +1,1 @@
-export { NavbarNotReg } from './ui/NavbarNotReg'
+export { Navbar } from './ui/Navbar'

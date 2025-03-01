@@ -1,6 +1,6 @@
 import { Button, Card, Flex, Input, Typography } from "antd"
 import { memo } from "react"
-import { NavbarNotReg } from "widgets/NavbarNotReg"
+import { Navbar } from "widgets/NavbarNotReg"
 import s from './LoginPage.module.scss'
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
@@ -12,7 +12,7 @@ export const LoginPage = () => {
     const { t } = useTranslation("Auth/LoginPage")
     return (
         <>
-            <NavbarNotReg />
+            <Navbar />
             <section className={s.wrappers}>
                 <Flex align="center" justify="center" className={s.wrapper}>
                     <Title level={2}>

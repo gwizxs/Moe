@@ -20,6 +20,14 @@ interface SidebarMenuProps {
 }
 
 export const SidebarItems = observer(({ items, isCollapsed }: SidebarMenuProps) => {
+  return (
+    <ul className={s.menu}>
+      <SidebarList items={items} isCollapsed={isCollapsed} />
+    </ul>
+  );
+});
+
+const SidebarList = observer(({ items, isCollapsed }: { items: MenuItem[]; isCollapsed: boolean }) => {
   const { sidebarStore } = useStore();
   const { t } = useTranslation();
 
@@ -28,7 +36,7 @@ export const SidebarItems = observer(({ items, isCollapsed }: SidebarMenuProps) 
   };
 
   return (
-    <ul className={s.menu}>
+    <>
       {items.map(({ id, url, text, icon }) => (
         <li
           key={url}
@@ -36,17 +44,14 @@ export const SidebarItems = observer(({ items, isCollapsed }: SidebarMenuProps) 
             [s.active]: sidebarStore.selectedKey === id,
           })}
         >
-          <NavLink to={url}
-            className={s.link}
-            onClick={() => handleMenuClick(id)}>
+          <NavLink to={url} className={s.link} onClick={() => handleMenuClick(id)}>
             <div className={s.icon}>{icon}</div>
-            {!isCollapsed && <a className={s.helper}><span className={s.label}>{t(text)}</span></a>}
+            {!isCollapsed && <span className={s.label}>{t(text)}</span>}
           </NavLink>
         </li>
       ))}
-    </ul>
+    </>
   );
-}
-);
+});
 
 export default SidebarItems;

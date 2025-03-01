@@ -1,6 +1,6 @@
 import { Button, Card, Flex, Input, Typography } from "antd"
 import { memo } from "react"
-import { NavbarNotReg } from "widgets/NavbarNotReg"
+import { Navbar } from "widgets/NavbarNotReg"
 import s from './RegistrationPage.module.scss'
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
@@ -12,7 +12,7 @@ export const RegistrationPage = () => {
     const { t } = useTranslation("Auth/RegistrationPage")
     return (
         <>
-            <NavbarNotReg />
+            <Navbar />
             <section className={s.wrappers}>
                 <Flex align="center" justify="center" className={s.wrapper}>
                     <Title level={2}>

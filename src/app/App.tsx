@@ -1,9 +1,10 @@
 import classNames from "shared/library/classNames/classNames"
-import { AppRouter, LayoutWrapper } from "./providers/router"
+import { AppRouter } from "./providers/router"
 import { useTheme } from "./providers/ThemeProvider"
 import { Suspense } from "react"
 import { RootStoreContext } from "./providers/StoreProvider"
 import { RootStore } from "shared/store/root-store"
+import { Navbar } from "widgets/NavbarNotReg"
 
 function App() {
   const { theme } = useTheme()
@@ -12,9 +13,8 @@ function App() {
     <RootStoreContext.Provider value={new RootStore()}>
       <div className={classNames('app', {}, [theme])}>
         <Suspense fallback="" >
-          <LayoutWrapper>
-            <AppRouter />
-          </LayoutWrapper>
+          <Navbar />
+          <AppRouter />
         </Suspense>
       </div>
     </RootStoreContext.Provider>

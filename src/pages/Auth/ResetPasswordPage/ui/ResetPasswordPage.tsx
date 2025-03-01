@@ -1,6 +1,6 @@
 import { Button, Card, Flex, Input, Typography } from "antd"
 import { memo } from "react"
-import { NavbarNotReg } from "widgets/NavbarNotReg"
+import { Navbar } from "widgets/NavbarNotReg"
 import s from './ResetPasswordPage.module.scss'
 import { useTranslation } from "react-i18next"
 
@@ -10,7 +10,7 @@ export const ResetPasswordPage = () => {
     const { t } = useTranslation("Auth/ResetPasswordPage")
     return (
         <>
-        <NavbarNotReg />
+        <Navbar />
         <section className={s.wrappers}>
             <Flex align="center" justify="center" className={s.wrapper}>
                 <Title level={2}>
