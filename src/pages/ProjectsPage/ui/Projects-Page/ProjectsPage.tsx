@@ -6,8 +6,6 @@ import { ArticleStatus, ArticleView } from "entities/Article/model/types/article
 import { ArticleViewSwitcher } from "features/ArticleViewSwitcher";
 import { useCallback } from "react";
 import { Page } from "widgets/Page/Page";
-import { SwitcherType } from "shared/constants/ToggleSwitchers";
-import { useSearchParams } from "react-router-dom";
 import { useStore } from "app/providers/StoreProvider";
 
 interface ProjectsPageProps {
@@ -19,9 +17,7 @@ interface ProjectsPageProps {
 export const ProjectsPage = observer((props: ProjectsPageProps) => {
     const { className } = props;
     const { articlesViewStore } = useStore();
-    const [searchParams] = useSearchParams();
 
-    const currentType = searchParams.get("type") || SwitcherType.PROJECTS;
 
     const onChangeView = useCallback(
         (newView: ArticleView) => {
@@ -42,17 +38,12 @@ export const ProjectsPage = observer((props: ProjectsPageProps) => {
         myProject: index % 5 === 0, 
     }));
 
-    const filteredArticles =
-        currentType === SwitcherType.MY_PROJECTS
-            ? articles.filter(article => article.myProject)
-            : articles;
-
     return (
         <Page className={classNames(s.ProjectsPage, {}, [className])}>
             <div className={s.wrapper}>
                 <ArticleViewSwitcher view={articlesViewStore.view} onViewClick={onChangeView} />
             </div>
-            <ArticleList view={articlesViewStore.view} articles={filteredArticles} />
+            <ArticleList view={articlesViewStore.view} articles={articles} />
         </Page>
     );
 });
