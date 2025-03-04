@@ -84,7 +84,7 @@
     width: 90%;
     margin: 1rem 0rem;
     .CardContent {
-        border: var(--stroke) solid 1px;
+        border: var(--stroke) 1px solid;
         word-break: 'break-word';
         overflow: 'hidden'; 
         text-overflow: 'ellipsis'; 

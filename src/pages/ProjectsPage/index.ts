@@ -1,1 +1,0 @@
-export { ProjectsPageLazy as ProjectsPage } from "./ui/Projects-Page/Projects.lazy";

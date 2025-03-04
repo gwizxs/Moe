@@ -11,7 +11,7 @@ interface ProjectsPageProps {
 
 // ПЕРЕДЕЛАТЬ ЛОГИКУ ПРИ ПОЯВЛЕНИИ БЕКЕНДА !!!!!!!!
 
-export const VacancyPage = observer((props: ProjectsPageProps) => {
+export const SeriesPage = observer((props: ProjectsPageProps) => {
     const { className } = props;
     // const [searchParams] = useSearchParams();
 
@@ -42,4 +42,4 @@ export const VacancyPage = observer((props: ProjectsPageProps) => {
     );
 });
 
-export default VacancyPage;
+export default SeriesPage;

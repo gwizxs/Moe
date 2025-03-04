@@ -14,7 +14,7 @@ interface ProjectsPageProps {
 
 // ПЕРЕДЕЛАТЬ ЛОГИКУ ПРИ ПОЯВЛЕНИИ БЕКЕНДА !!!!!!!!
 
-export const ProjectsPage = observer((props: ProjectsPageProps) => {
+export const FilmsPage = observer((props: ProjectsPageProps) => {
     const { className } = props;
     const { articlesViewStore } = useStore();
 
@@ -48,4 +48,4 @@ export const ProjectsPage = observer((props: ProjectsPageProps) => {
     );
 });
 
-export default ProjectsPage;
+export default FilmsPage;

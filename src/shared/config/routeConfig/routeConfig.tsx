@@ -2,11 +2,11 @@ import { LoginPage } from "pages/Auth/LoginPage";
 import { NewPasswordPage } from "pages/Auth/NewPasswordPage";
 import { RegistrationPage } from "pages/Auth/RegistrationPage";
 import { ResetPasswordPage } from "pages/Auth/ResetPasswordPage";
+import { FilmsPage } from "pages/FilmsPage";
 import LandingPage from "pages/LandingPage/ui/LandingPage";
 import { MainPage } from "pages/MainPage";
 import { NotFoundPage } from "pages/NotFoundPage";
-import { ProjectsPage } from "pages/ProjectsPage";
-import VacancyPage from "pages/VacancyPage/ui/VacancyPage";
+import { SeriesPage } from "pages/SeriesPages";
 import { RouteProps } from "react-router-dom";
 
 export type AppRoutesProps = RouteProps & {
@@ -25,9 +25,9 @@ export enum AppRoutes {
     RESET_PASSWORD = 'reset-password',
 
     // ВСЕ ЧТО ОТНОСИТСЯ К ВЕБ 
-    PROJECTS = 'projects',
+    FILMS = 'films',
     EVENTS = 'events',
-    VACANCIES = 'vacancies',
+    SERIES = 'series',
     EDUCATION = 'education',
     HELP = 'help',
 
@@ -47,9 +47,9 @@ export const RoutePath: Record<AppRoutes, string> = {
     // ------------- аутентификация ------------------
 
     // ------------- ВЕБ ------------------
-    [AppRoutes.PROJECTS]: '/projects',
+    [AppRoutes.FILMS]: '/films',
     [AppRoutes.EVENTS]: '/events',
-    [AppRoutes.VACANCIES]: '/vacancies',
+    [AppRoutes.SERIES]: '/series',
     [AppRoutes.EDUCATION]: '/education',
     [AppRoutes.HELP]: '/help',
 
@@ -90,17 +90,17 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 
     // ------------- ВЕБ ------------------
 
-    [AppRoutes.PROJECTS]: {
-        path: RoutePath.projects,
-        element: <ProjectsPage />,
+    [AppRoutes.FILMS]: {
+        path: RoutePath.films,
+        element: <FilmsPage />,
     },
     [AppRoutes.EVENTS]: {
         path: RoutePath.events,
         element: <MainPage />,
     },
-    [AppRoutes.VACANCIES]: {
-        path: RoutePath.vacancies,
-        element: <VacancyPage />,
+    [AppRoutes.SERIES]: {
+        path: RoutePath.series,
+        element: <SeriesPage />,
     },
     [AppRoutes.EDUCATION]: {
         path: RoutePath.education,
