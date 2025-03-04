@@ -5,7 +5,7 @@
     margin-right: 2rem;
     margin-bottom: 3rem;
     .CardContent {
-        box-shadow: 0 1px 10px var(--box-shadow);
+        border: var(--stroke) solid 1px;
         word-break: 'break-word';
         overflow: 'hidden'; 
         text-overflow: 'ellipsis'; 
@@ -84,7 +84,7 @@
     width: 90%;
     margin: 1rem 0rem;
     .CardContent {
-        box-shadow: 0 1px 10px var(--box-shadow);
+        border: var(--stroke) solid 1px;
         word-break: 'break-word';
         overflow: 'hidden'; 
         text-overflow: 'ellipsis'; 
