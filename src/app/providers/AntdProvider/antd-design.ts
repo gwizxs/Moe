@@ -20,7 +20,9 @@ export const lightThemeConfig: ThemeConfig = {
          paddingBlock: 10,
          borderRadius: 12,
          fontSize: 16,
-
+      },
+      Card: {
+         bodyPadding: 0,
       }
    },
  };
@@ -53,7 +55,8 @@ export const lightThemeConfig: ThemeConfig = {
          controlHeight: 40
       },
       Card: {
-        colorBgContainer: '#212124'
+        colorBgContainer: '#212124',
+        bodyPadding: 0
       },
    },
  };

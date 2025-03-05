@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import classNames from "shared/library/classNames/classNames";
 import s from "./FilmsPage.module.scss";
 import { ArticleList } from "entities/Article";
-import { ArticleStatus, ArticleView } from "entities/Article/model/types/article";
+import { ArticleView } from "entities/Article/model/types/article";
 import { ArticleViewSwitcher } from "features/ArticleViewSwitcher";
 import { useCallback, useEffect } from "react";
 import { Page } from "widgets/Page/Page";
