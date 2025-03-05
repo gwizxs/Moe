@@ -69,9 +69,9 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
             >
                 <Card className={s.CardContent}>
                     <section className={s.date}>
-                        <div>{article.episodesTotal}</div>
                         <div className={s.CardHoverText}>
-                            <Title style={{ color: 'var(--inverted-bg-color)' }} level={5}>{article.name.main}</Title>
+                            <div className={s.episode}>{article.episodesTotal} {t("эпизод")}</div>
+                            <Title style={{ color: 'var(--inverted-bg-color)' }} level={3}>{article.name.main}</Title>
                             <Paragraph style={{ color: 'var(--inverted-bg-color)' }}>{article.year} | {article.season.description} | {article.type.description} | {article.ageRating.label} </Paragraph>
                             <Paragraph style={{ color: 'var(--inverted-bg-color)' }}>{article.genres.join(' - ')}</Paragraph>
                             <Button type="primary" >{t('Смотреть')}</Button>

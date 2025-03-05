@@ -18,6 +18,18 @@
         padding: 4px 8px;
         border-radius: 4px;
         font-size: 0.9rem;
+
+        .episode {
+            color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            font-size:small;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background-color: var(--bg-color);
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
     }
 
     &:hover {
@@ -36,7 +48,6 @@
         justify-content: center;
         width: 100%;
         height: 100%;
-    
     }
     
 

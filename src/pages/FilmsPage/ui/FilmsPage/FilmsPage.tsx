@@ -12,7 +12,6 @@ interface ProjectsPageProps {
     className?: string;
 }
 
-// ПЕРЕДЕЛАТЬ ЛОГИКУ ПРИ ПОЯВЛЕНИИ БЕКЕНДА !!!!!!!!
 
 export const FilmsPage = observer((props: ProjectsPageProps) => {
     const { className } = props;
@@ -20,7 +19,7 @@ export const FilmsPage = observer((props: ProjectsPageProps) => {
 
     useEffect(() => {
             console.log(releasesStoreAnime.releasesData);
-    }, []);
+    }, [releasesStoreAnime.releasesData?.state]);
 
     const onChangeView = useCallback(
         (newView: ArticleView) => {
@@ -39,7 +38,7 @@ export const FilmsPage = observer((props: ProjectsPageProps) => {
         },
         alias: `chi-chikyuu-no-undou-ni-tsuite-${index}`,
         season: {
-            value: "autumn",
+            value: "осень",
             description: "autumn",
         },
         poster: {

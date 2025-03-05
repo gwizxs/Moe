@@ -5,18 +5,17 @@ import { GetReleasesAnimeResponse } from "shared/api/services/releases-anime-cat
 
 
 
-
 export class ReleasesStoreAnime {
     constructor() {
         makeAutoObservable(this);
     }
 
-    releasesData?: IPromiseBasedObservable<GetReleasesAnimeResponse[]>
+    releasesData?: IPromiseBasedObservable<GetReleasesAnimeResponse>
 
     getReleasesAnimeAction = async () => {
         try {
             this.releasesData =
-                fromPromise(
+                fromPromise<GetReleasesAnimeResponse>(
                     getReleasesAnime()
                 );
         } catch (error) {

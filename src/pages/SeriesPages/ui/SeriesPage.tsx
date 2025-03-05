@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import { Page } from "widgets/Page/Page";
 import classNames from "shared/library/classNames/classNames";
 import s from './SeriesPage.module.scss'
-import { Filter } from "widgets/Filter";
 
 
 interface ProjectsPageProps {
@@ -17,7 +16,7 @@ export const SeriesPage = observer((props: ProjectsPageProps) => {
     return (
         <Page className={classNames(s.ProjectsPage, {}, [className])}>
             <div className={s.wrapper}>
-                <Filter />
+d
             </div>
         </Page>
     );
