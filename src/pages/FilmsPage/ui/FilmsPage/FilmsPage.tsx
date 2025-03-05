@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 import classNames from "shared/library/classNames/classNames";
-import s from "./ProjectsPage.module.scss";
+import s from "./FilmsPage.module.scss";
 import { ArticleList } from "entities/Article";
 import { ArticleStatus, ArticleView } from "entities/Article/model/types/article";
 import { ArticleViewSwitcher } from "features/ArticleViewSwitcher";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Page } from "widgets/Page/Page";
 import { useStore } from "app/providers/StoreProvider";
 
@@ -16,8 +16,11 @@ interface ProjectsPageProps {
 
 export const FilmsPage = observer((props: ProjectsPageProps) => {
     const { className } = props;
-    const { articlesViewStore } = useStore();
+    const { articlesViewStore, releasesStoreAnime } = useStore();
 
+    useEffect(() => {
+            console.log(releasesStoreAnime.releasesData);
+    }, []);
 
     const onChangeView = useCallback(
         (newView: ArticleView) => {
@@ -27,16 +30,36 @@ export const FilmsPage = observer((props: ProjectsPageProps) => {
     );
 
     // Генерация статей (каждая вторая — "мой проект")
-    const articles = new Array(20).fill(0).map((_, index) => ({
-        id: String(index),
-        title: `Project ${index + 1}`,
-        subtitle: "Что нового в JS за 2022 год?",
-        description: "com/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.pngcom/wp-content/uploads/2020/11/js.png",
-        status: ArticleStatus.VACANCIES,
-        icon: "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg",
-        createdAt: "26.02.2025",
-        myProject: index % 5 === 0, 
+    const articles = new Array(10).fill(0).map((_, index) => ({
+        id: 9821 + index,
+        type: "TV",
+        year: 2024,
+        name: {
+            main: `О движении Земли ${index}`,
+        },
+        alias: `chi-chikyuu-no-undou-ni-tsuite-${index}`,
+        season: {
+            value: "autumn",
+            description: "autumn",
+        },
+        poster: {
+            src: `https://anilibria.top/api/v1/storage/releases/posters/9821/A5pVpdtZP5v7buxh8zc2KCyzCe8tua0a.webp`,
+            thumbnail: `https://anilibria.top/api/v1/storage/releases/posters/9821/A5pVpdtZP5v7buxh8zc2KCyzCe8tua0a.webp`,
+            optimized: {
+                src: `https://anilibria.top/storage/releases/posters/9821/7FpmtsdtDAVNEvyQTzVRRLsU1T7ZemAo.jpg`,
+                thumbnail: `https://anilibria.top/api/v1/storage/releases/posters/9821/A5pVpdtZP5v7buxh8zc2KCyzCe8tua0a.webp`,
+            },
+        },
+        isOngoing: index % 2 === 0,
+        ageRating: {
+            label: "16+",
+        },
+        publishDay: "Среда",
+        episodesTotal: 24,
+        averageDuration: 25,
+        genres: ["Сейнен", "Драма", "Исторический"],
     }));
+
 
     return (
         <Page className={classNames(s.ProjectsPage, {}, [className])}>
