@@ -14,10 +14,12 @@ export class ReleasesStoreAnime {
 
     getReleasesAnimeAction = async () => {
         try {
+            console.log("getReleasesAnimeAction");
             this.releasesData =
                 fromPromise<GetReleasesAnimeResponse>(
                     getReleasesAnime()
                 );
+                console.log(this.releasesData, 'releasesData');
         } catch (error) {
             console.log(error);
         }

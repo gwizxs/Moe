@@ -37,6 +37,25 @@ type Type = {
         thumbnail: string;
     };
 };
+
+type publishDay = {
+    value: string;
+    description: string;
+}
+
+type Genre = {
+    id: number;
+    name: string;
+    totalReleases: number;
+    image: {
+        preview: string;
+        thumbnail: string;
+        optimized: {
+            preview: string;
+            thumbnail: string;
+        };
+    };
+};
 export interface Article {
     id: number;
     type: Type;
@@ -47,10 +66,10 @@ export interface Article {
     poster: Poster;
     isOngoing: boolean;
     ageRating: age_rating;
-    publishDay: string;
+    publishDay: publishDay;
     episodesTotal: number;
     averageDuration: number;
-    genres: string[];
+    genres: Genre[];
   };
 
   
