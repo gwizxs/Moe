@@ -37,15 +37,17 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
         return <div>Ошибка загрузки данных</div>;
     }
 
-    const articles = releasesStoreAnime.releasesData?.value ?? [];
-
-
     return (
         <Page className={classNames(s.FilmsPage, {}, [className])}>
             <div className={s.wrapper}>
                 <ArticleViewSwitcher view={articlesViewStore.view} onViewClick={onChangeView} />
             </div>
-            <ArticleList view={articlesViewStore.view} articles={articles} />
+            <ArticleList
+                view={articlesViewStore.view}
+                articles={
+                    releasesStoreAnime.releasesData?.value?.data || []
+                }
+            />
         </Page>
     );
 });

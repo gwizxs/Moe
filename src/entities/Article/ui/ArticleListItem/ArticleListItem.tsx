@@ -1,12 +1,13 @@
-import { Article, ArticleView } from "../../model/types/article"
+import { ArticleView } from "../../model/types/article"
 import { observer } from "mobx-react-lite"
 import { useTranslation } from "react-i18next"
 import classNames from "shared/library/classNames/classNames"
 import s from './ArticleListItem.module.scss'
-import { Button, Card, Col, Row, Typography } from "antd"
+import { Button, Card, Col, Row, Tag, Typography } from "antd"
+import { Anime } from "shared/api/services/releases-anime-catalog/types"
 interface ArticleListItemProps {
     className?: string
-    article: Article
+    article: Anime
     view: ArticleView
 }
 
@@ -70,14 +71,24 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
                 <Card className={s.CardContent}>
                     <section className={s.date}>
                         <div className={s.CardHoverText}>
-                            <div className={s.episode}>{article.episodesTotal} {t("эпизод")}</div>
-                            <Title style={{ color: 'var(--inverted-bg-color)' }} level={3}>{article.name.main}</Title>
-                            <Paragraph style={{ color: 'var(--inverted-bg-color)' }}>{article.year} | {article.season.description} | {article.type.description} | {article.ageRating.label} </Paragraph>
-                            <Paragraph style={{ color: 'var(--inverted-bg-color)' }}>{article.genres.join(' - ')}</Paragraph>
+                            <div className={s.episode}>{article.episodes_total} {t("эпизод")}</div>
+                            <Title className={s.title} style={{ color: 'var(--inverted-bg-color)' }} level={4}>
+                                {article.name.main}
+                            </Title>
+                            <Paragraph>
+                                {`${article.year} • ${article.season.description} • ${article.type.description} • ${article.age_rating.label}`}
+                            </Paragraph>
+                            <div>
+                                {article.genres.map((genre) => (
+                                    <Tag key={genre.id} className={s.tag}>
+                                        {genre.name}
+                                    </Tag>
+                                ))}
+                            </div>
                             <Button type="primary" >{t('Смотреть')}</Button>
                         </div>
                     </section>
-                    {article.poster.optimized.src && <img className={s.ImgCardContent} src={article.poster.optimized.src} alt={article.name.main} />}
+                    {article.poster.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`} alt={article.name.main} />}
                 </Card>
             </Col>
         </Row>

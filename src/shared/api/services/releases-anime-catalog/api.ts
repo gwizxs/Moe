@@ -3,5 +3,6 @@ import { baseInstanceV1 } from "shared/api/base";
 
 //  ============= FETCH ANIME RELEASES =============
 export const getReleasesAnime = async () => (
-    await baseInstanceV1.get(API_URL.releases_anime()))
+    await baseInstanceV1.get(API_URL.releases_anime()
+)).data
 
