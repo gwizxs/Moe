@@ -22,43 +22,52 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
 
     const { t } = useTranslation('Projects')
 
-    // if (view === ArticleView.BIG) {
-    //     return (
-    //         <Row
-    //             className={classNames(s.ArticleListItem, {}, [className, s[view]])}
-    //             gutter={16}
-    //             wrap={false}
-    //         >
-    //             <Col key={article.id} className={s.col}>
-    //                 <Card className={s.CardContent}>
-    //                     <Space wrap size={16} className={s.cardHeader}>
-    //                         <Avatar size={64}>
-    //                             <img className={s.ImgCardContent} src={article.icon} alt={article.title} />
-    //                         </Avatar>
-    //                         <div>
-    //                             <h2 className={s.textTitle}>{article.title}</h2>
-    //                             <h6>{article.subtitle}</h6>
-    //                         </div>
-    //                     </Space>
-    //                     <p className={s.descriptionCard}>{article.description}</p>
-    //                     <div className={article.status === ArticleStatus.VACANCIES
-    //                         ? s.vacancyTextRed
-    //                         : s.vacancyTextBlack}
-    //                     >
-    //                         <Space className={s.space} align="center" direction="horizontal">
-    //                             <UserRound className={s.icon} size={16} />
-    //                             <span>
-    //                                 {article.status === ArticleStatus.VACANCIES
-    //                                     ? t('Есть вакансии')
-    //                                     : t('Нет вакансий')}
-    //                             </span>
-    //                         </Space>
-    //                     </div>
-    //                 </Card>
-    //             </Col>
-    //         </Row>
-    //     )
-    // }
+    const ArticleTags = () => {
+        return (
+            <div className={s.tags}>
+                {article.genres.map((genre) => (
+                    <Tag key={genre.id} className={s.tag}>
+                        {genre.name}
+                    </Tag>
+                ))}
+            </div>
+        )
+    }
+
+    if (view === ArticleView.BIG) {
+        return (
+            <Row
+            className={classNames(s.ArticleListItem, {}, [className, s.BIG])}
+            gutter={16}
+            wrap={false}
+        >
+            <Col key={article.id} className={s.col}>
+                <Card className={s.CardContent} hoverable cover={article.poster.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`} alt={article.name.main} />}>
+                    <div className={s.episodeTag}>{article.episodes_total} эпизод</div>
+                    <div className={s.animeInfo}>
+                        <Title level={4} className={s.title}>{article.name.main}</Title>
+                        <Title level={5} type="secondary" className={s.subtitle}>
+                            {article.name.english} ({article.year})
+                        </Title>
+                        <div className={s.tagsContainer}>
+                            <Tag color="red" className={s.ageRating}>{article.age_rating.label}</Tag>
+                            {article.genres.map((tag) => (
+                                <Tag key={tag.id} className={s.tag}>{tag.name}</Tag>
+                            ))}
+                        </div>
+                        <Paragraph className={s.description}>{article.description}</Paragraph>
+                        <div className={s.genres}>
+                            {article.genres.map((genre) => (
+                                <Tag key={genre.name} color="blue" className={s.genreTag}>{genre.name}</Tag>
+                            ))}
+                        </div>
+                        <Button type="primary" className={s.watchButton}>Смотреть</Button>
+                    </div>
+                </Card>
+            </Col>
+        </Row>
+        )
+    }
 
     return (
         <Row
@@ -75,16 +84,10 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
                             <Title className={s.title} style={{ color: 'var(--inverted-bg-color)' }} level={4}>
                                 {article.name.main}
                             </Title>
-                            <Paragraph>
+                            <Paragraph style={{ color: 'var(--inverted-bg-color)' }}>
                                 {`${article.year} • ${article.season.description} • ${article.type.description} • ${article.age_rating.label}`}
                             </Paragraph>
-                            <div>
-                                {article.genres.map((genre) => (
-                                    <Tag key={genre.id} className={s.tag}>
-                                        {genre.name}
-                                    </Tag>
-                                ))}
-                            </div>
+                            <ArticleTags />
                             <Button type="primary" >{t('Смотреть')}</Button>
                         </div>
                     </section>

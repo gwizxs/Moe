@@ -38,6 +38,7 @@
             }
         }
     }
+
     .tag {
         display: inline-flex;
         flex-wrap: wrap;
@@ -111,53 +112,39 @@
 .BIG {
     width: 90%;
     margin: 1rem 0rem;
+
     .CardContent {
         border: var(--stroke) 1px solid;
         word-break: 'break-word';
-        overflow: 'hidden'; 
-        text-overflow: 'ellipsis'; 
+        overflow: 'hidden';
+        text-overflow: 'ellipsis';
         cursor: pointer;
-    
-        .col {
-            flex: 0 0 auto;
-            width: 400px; 
-            margin: 0 1rem 1rem 0;
-    
-            .descriptionCard {
-                max-width: 300px;
-            }
-        }
-    
-        .ArticleListItem {
-            padding: 0.2rem;
-        }
-    
-        .textTitle {
-            font-size: medium;
-            font-weight: 700;
+
+        .ant-card-body {
+            padding: 16px;
         }
 
-        .subtitle {
-            color: #757575;
+        .anime-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-        
-        .CardContent:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .descriptionCard {
-            display: -webkit-box;
-            -webkit-line-clamp: 5;
-            -webkit-box-orient: vertical; 
-            overflow: hidden;
-            text-overflow: ellipsis; 
-            font-size: small;
-            max-width: 90%;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-            margin-left: 0.6rem;
-        }
-    
 
+        .age-rating {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .genres {
+            margin-top: 8px;
+        }
     }
+
 }
