@@ -1,9 +1,9 @@
 import classNames from "shared/library/classNames/classNames";
-import { ArticleView } from "../../model/types/article";
 import { observer } from "mobx-react-lite"
 import s from './ArticleList.module.scss'
 import ArticleListItem from "../ArticleListItem/ArticleListItem";
 import { Anime } from "shared/api/services/releases-anime-catalog/types";
+import { ArticleView } from "entities/Article";
 
 interface ArticleListProps {
     className?: string;
@@ -24,12 +24,12 @@ export const ArticleList = observer((props: ArticleListProps) => {
                 article={article}
                 view={view}
                 key={article.id}
-                 />
+            />
         )
     }
     return (
         <section className={classNames(s.ArticleList, {}, [className, s[view]])}>
-            {Array.isArray(articles) ? articles.map(renderArticle) : <p>dd</p>}
+            {Array.isArray(articles) ? articles.map(renderArticle) : null}
         </section>
     )
 })

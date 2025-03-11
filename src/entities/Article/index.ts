@@ -1,3 +1,3 @@
-export { ArticleView } from './model/types/article';
-export type { Article } from './model/types/article';
+export { ArticleView } from './model/article';
 export { ArticleList } from './ui/ArticleList/ArticleList';
+export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails'

@@ -1,10 +1,10 @@
-import { ArticleView } from "../../model/types/article"
 import { observer } from "mobx-react-lite"
 import { useTranslation } from "react-i18next"
 import classNames from "shared/library/classNames/classNames"
 import s from './ArticleListItem.module.scss'
 import { Button, Card, Col, Row, Tag, Typography } from "antd"
 import { Anime } from "shared/api/services/releases-anime-catalog/types"
+import { ArticleView } from "entities/Article"
 interface ArticleListItemProps {
     className?: string
     article: Anime

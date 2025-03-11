@@ -1,3 +1,4 @@
+import { AnimeDetailsPage } from "pages/AnimeDetailsPage";
 import { LoginPage } from "pages/Auth/LoginPage";
 import { NewPasswordPage } from "pages/Auth/NewPasswordPage";
 import { RegistrationPage } from "pages/Auth/RegistrationPage";
@@ -25,6 +26,7 @@ export enum AppRoutes {
     RESET_PASSWORD = 'reset-password',
 
     // ВСЕ ЧТО ОТНОСИТСЯ К ВЕБ 
+    ANIME_DETAILS = 'anime_details',
     FILMS = 'films',
     EVENTS = 'events',
     SERIES = 'series',
@@ -47,6 +49,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     // ------------- аутентификация ------------------
 
     // ------------- ВЕБ ------------------
+    [AppRoutes.ANIME_DETAILS]: '/anime-details/', // + id
     [AppRoutes.FILMS]: '/films',
     [AppRoutes.EVENTS]: '/events',
     [AppRoutes.SERIES]: '/series',
@@ -89,7 +92,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     // ------------- аутентификация ------------------
 
     // ------------- ВЕБ ------------------
-
+    [AppRoutes.ANIME_DETAILS]: {
+        path: `${RoutePath.anime_details}:id`,
+        element: <AnimeDetailsPage />,
+    },
     [AppRoutes.FILMS]: {
         path: RoutePath.films,
         element: <FilmsPage />,
