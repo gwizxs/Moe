@@ -34,11 +34,38 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         )
     }
 
+    /*
+    TODO: 
+    при нажатии на карточку отправляем пользователя на эпизод, показываем плеер anime.episodes.hls_{значение качества которое выберет}
+    отрисовываем название аниме и добавляем скип опенинга и эндинга, в виде перехода используем уникальный id для каждого плеера стор не меняется
+    
+    */
+    const CardInfoSeries = () => {
+        return (
+            <>
+                {anime.episodes.map((episode) => (
+                    <section>
+                        <div>
+                            <Title level={3}>
+                                {episode.name}
+                            </Title>
+                            <Paragraph>
+                                {Math.ceil(episode.duration / 60)}
+                            </Paragraph>
+                        </div>
+                        {episode.preview.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src}`} alt={episode.name} />}
+                    </section>
+                ))}
+                
+            </>
+        )
+    }
+
     return (
         <Card className={classNames(s.CardContent, {}, [className])}>
             <section className={s.date}>
                 <div>
-                    {anime.poster.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`} alt={article.name.main} />}
+                    {anime.poster.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${anime.poster.optimized.src}`} alt={anime.name.main} />}
                 </div>
                 <div>
                     <Title level={3}>
@@ -50,6 +77,9 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                 </div>
                 <Tag>
                     {anime.age_rating.label}
+                </Tag>
+                <Tag>
+                    {t("В избранном у")} {anime.added_in_users_favorites} {t("пользователей")}
                 </Tag>
                 <Paragraph>
                     {t("Тип")} {anime.type.value}
@@ -66,13 +96,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                     {anime.description}
                 </Paragraph>
                 <section>
-                   <div>
-                    {anime.episodes.map((episode) => (
-                        <section>
-                            
-                        </section>
-                    ))}
-                   </div>
+                    <CardInfoSeries />
                 </section>
                 <Member />
             </section>
