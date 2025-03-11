@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite"
 import { useTranslation } from "react-i18next"
 import classNames from "shared/library/classNames/classNames"
 import s from './ArticleListItem.module.scss'
-import { Button, Card, Col, Row, Tag, Typography } from "antd"
+import { Button, Card, Col, Row, Tag, Typography, Image } from "antd"
 import { Anime } from "shared/api/services/releases-anime-catalog/types"
 import { ArticleView } from "entities/Article"
 interface ArticleListItemProps {
@@ -36,36 +36,38 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
 
     if (view === ArticleView.BIG) {
         return (
-            <Row
-            className={classNames(s.ArticleListItem, {}, [className, s.BIG])}
-            gutter={16}
-            wrap={false}
-        >
-            <Col key={article.id} className={s.col}>
-                <Card className={s.CardContent} hoverable cover={article.poster.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`} alt={article.name.main} />}>
-                    <div className={s.episodeTag}>{article.episodes_total} эпизод</div>
-                    <div className={s.animeInfo}>
-                        <Title level={4} className={s.title}>{article.name.main}</Title>
-                        <Title level={5} type="secondary" className={s.subtitle}>
-                            {article.name.english} ({article.year})
-                        </Title>
-                        <div className={s.tagsContainer}>
-                            <Tag color="red" className={s.ageRating}>{article.age_rating.label}</Tag>
-                            {article.genres.map((tag) => (
-                                <Tag key={tag.id} className={s.tag}>{tag.name}</Tag>
-                            ))}
+            <Card className={classNames(s.ArticleListItem, {}, [className, s.BIG])}>
+                <Row gutter={16} wrap={false}>
+                    <Col flex="250px" className={s.col}>
+                        <Image
+                            className={s.CardContent}
+                            src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`}
+                        />
+                    </Col>
+                    <Col flex="auto" className={s.col}>
+                        <div className={s.animeInfo}>
+                            <Title level={4} className={s.title}>{article.name.main}</Title>
+                            <Title level={5} type="secondary" className={s.subtitle}>
+                                {article.name.english} ({article.year})
+                            </Title>
+                            <div className={s.tagsContainer}>
+                                <Tag color="red" className={s.ageRating}>{article.age_rating.label}</Tag>
+                                {article.genres.map((tag) => (
+                                    <Tag key={tag.id} className={s.tag}>{tag.name}</Tag>
+                                ))}
+                                <Tag color="gold">{article.year}</Tag>
+                                <Tag color="purple">{article.season.description}</Tag>
+                                <Tag color="green">{article.type.description}</Tag>
+                            </div>
+                            <Paragraph className={s.description} ellipsis={{ rows: 8, expandable: false }}>
+                                {article.description}
+                            </Paragraph>
                         </div>
-                        <Paragraph className={s.description}>{article.description}</Paragraph>
-                        <div className={s.genres}>
-                            {article.genres.map((genre) => (
-                                <Tag key={genre.name} color="blue" className={s.genreTag}>{genre.name}</Tag>
-                            ))}
-                        </div>
-                        <Button type="primary" className={s.watchButton}>Смотреть</Button>
-                    </div>
-                </Card>
-            </Col>
-        </Row>
+                    </Col>
+                </Row>
+            </Card>
+
+
         )
     }
 

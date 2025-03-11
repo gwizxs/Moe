@@ -112,6 +112,22 @@
 .BIG {
     width: 90%;
     margin: 1rem 0rem;
+    padding: 1rem;
+    cursor: pointer;
+
+
+    .tagsContainer {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        span {
+            padding: 0.3rem;
+        }
+    }
+
+
+    .subtitle {
+        color: var(--inverted-primary-color);
+    }
 
     .CardContent {
         border: var(--stroke) 1px solid;
@@ -119,10 +135,7 @@
         overflow: 'hidden';
         text-overflow: 'ellipsis';
         cursor: pointer;
-
-        .ant-card-body {
-            padding: 16px;
-        }
+        border-radius: 1rem;
 
         .anime-info {
             display: flex;
@@ -139,12 +152,16 @@
 
         .description {
             font-size: 14px;
-            color: #bbb;
         }
 
         .genres {
             margin-top: 8px;
         }
+
+        .col {
+            padding: 1rem;
+        }
+
     }
 
 }
