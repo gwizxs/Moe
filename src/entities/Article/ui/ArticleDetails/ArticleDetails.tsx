@@ -55,12 +55,12 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                     >
                         <div className={s.overlay}></div>
                         <div className={s.content}>
-                            <Paragraph className={s.episodeTitle}>{episode.name}</Paragraph>
+                            <Paragraph style={{ color: "var(--inverted-bg-color)"}} className={s.episodeTitle}>{episode.name}</Paragraph>
                             <div className={s.bottomSection}>
-                                <Title level={4} className={s.episodeNumber}>
-                                    {episode.ordinal} эпизод
+                                <Title level={4} style={{ color: "var(--inverted-bg-color)"}} className={s.episodeNumber}>
+                                    {episode.ordinal} {t("эпизод")}
                                 </Title>
-                                <Paragraph className={s.duration}>
+                                <Paragraph style={{ color: "var(--inverted-bg-color)"}} className={s.duration}>
                                     {`${Math.floor(episode.duration / 60)}:${String(episode.duration % 60).padStart(2, "0")}`}
                                 </Paragraph>
                             </div>
@@ -93,7 +93,11 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                             <Tag>{t("В избранном у")} {anime?.added_in_users_favorites} {t("пользователей")}</Tag>
                         </div>
 
-                        <Descriptions column={1}>
+                        <Descriptions
+                            column={1}
+                            labelStyle={{ color: "var(--inverted-primary-color)" }}
+                            contentStyle={{ color: "var(--inverted-primary-color)" }}
+                        >
                             <Descriptions.Item label={t("Тип")}>{anime?.type.value}</Descriptions.Item>
                             <Descriptions.Item label={t("Сезон")}>{anime?.season.value}</Descriptions.Item>
                             <Descriptions.Item label={t("Жанры")}>

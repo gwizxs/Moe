@@ -23,6 +23,7 @@ export const lightThemeConfig: ThemeConfig = {
       },
       Card: {
          bodyPadding: 0,
+         colorBgContainer: '#72727209',
       }
    },
  };

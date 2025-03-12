@@ -3,9 +3,10 @@
 @import "themes/light";
 @import "themes/dark.scss";
 
-
 .app {
-    font: var(--font-m);
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-m);
+    line-height: var(--font-line-m);
     background: var(--bg-color);
     color: var(--primary-color);
     min-height: 100vh;

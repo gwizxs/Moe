@@ -7,6 +7,7 @@
     margin-bottom: 2rem;
 }
 
+
 .animeInfo {
     display: flex;
     flex-direction: column;
@@ -17,6 +18,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+
+    span {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
 }
 
 .description {
@@ -169,10 +175,10 @@
 .nickname {
     font-weight: bold;
     font-size: 16px;
-    color: #fff;
+    color: var(--primary-color);
 }
 
 .role {
     font-size: 14px;
-    color: #aaa;
+    color: var(--stroke);
 }
