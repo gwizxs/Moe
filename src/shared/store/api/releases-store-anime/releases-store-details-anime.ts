@@ -5,7 +5,7 @@ import { ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/
 import { getReleasesDetailsAnime } from "shared/api/services/releases-anime-details/api";
 
 export class ReleasesStoreDetailsAnime {
-    releasesData?: IPromiseBasedObservable<AxiosResponse<ReleaseDetailsAnime[]>>
+    releasesData?: IPromiseBasedObservable<AxiosResponse<ReleaseDetailsAnime>>
 
     constructor() {
         makeAutoObservable(this);
@@ -15,7 +15,7 @@ export class ReleasesStoreDetailsAnime {
         try {
             console.log("getReleasesDetailsAnimeAction");
             this.releasesData =
-                fromPromise<AxiosResponse<ReleaseDetailsAnime[]>>(
+                fromPromise<AxiosResponse<ReleaseDetailsAnime>>(
                     getReleasesDetailsAnime(id)
                 );
             console.log(this.releasesData, 'releasesData');

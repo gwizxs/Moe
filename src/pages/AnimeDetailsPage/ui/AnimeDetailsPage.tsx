@@ -4,7 +4,9 @@ import s from "./AnimeDetailsPage.module.scss";
 import { Page } from "widgets/Page/Page";
 import { useStore } from "app/providers/StoreProvider";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { ArticleDetails } from "entities/Article";
+
 
 interface AnimeDetailsPageProps {
     className?: string;
@@ -12,17 +14,20 @@ interface AnimeDetailsPageProps {
 
 export const AnimeDetailsPage = observer(({ className }: AnimeDetailsPageProps) => {
     const { releasesStoreAnimeDetails } = useStore();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get("id"); 
 
     useEffect(() => {
-        releasesStoreAnimeDetails.getReleasesDetailsAnimeAction(9853);
+        releasesStoreAnimeDetails.getReleasesDetailsAnimeAction(Number(id));
         console.log(releasesStoreAnimeDetails.releasesData);
-    }, [releasesStoreAnimeDetails]);
+    }, [id, releasesStoreAnimeDetails]);
 
     
 
     return (
         <Page className={classNames(s.FilmsPage, {}, [className])}>
-            d
+            {releasesStoreAnimeDetails.releasesData?.value && <ArticleDetails anime={releasesStoreAnimeDetails.releasesData?.value as ReleaseDetailsAnime} />}
         </Page>
     );
 });

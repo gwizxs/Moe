@@ -5,10 +5,12 @@ import s from './ArticleListItem.module.scss'
 import { Button, Card, Col, Row, Tag, Typography, Image } from "antd"
 import { Anime } from "shared/api/services/releases-anime-catalog/types"
 import { ArticleView } from "entities/Article"
+import { Link } from "react-router-dom"
+import { AppRoutes } from "shared/config/routeConfig/routeConfig"
 interface ArticleListItemProps {
-    className?: string
-    article: Anime
-    view: ArticleView
+    className?: string;
+    article: Anime;
+    view: ArticleView;
 }
 
 const { Paragraph, Title } = Typography;
@@ -37,34 +39,36 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
     if (view === ArticleView.BIG) {
         return (
             <Card className={classNames(s.ArticleListItem, {}, [className, s.BIG])}>
-                <Row gutter={16} wrap={false}>
-                    <Col flex="250px" className={s.col}>
-                        <Image
-                            className={s.CardContent}
-                            src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`}
-                        />
-                    </Col>
-                    <Col flex="auto" className={s.col}>
-                        <div className={s.animeInfo}>
-                            <Title level={4} className={s.title}>{article.name.main}</Title>
-                            <Title level={5} type="secondary" className={s.subtitle}>
-                                {article.name.english} ({article.year})
-                            </Title>
-                            <div className={s.tagsContainer}>
-                                <Tag color="red" className={s.ageRating}>{article.age_rating.label}</Tag>
-                                {article.genres.map((tag) => (
-                                    <Tag key={tag.id} className={s.tag}>{tag.name}</Tag>
-                                ))}
-                                <Tag color="gold">{article.year}</Tag>
-                                <Tag color="purple">{article.season.description}</Tag>
-                                <Tag color="green">{article.type.description}</Tag>
+                <Link to={`/${AppRoutes.ANIME_DETAILS}/${article.alias}?id=${article.id}`}>
+                    <Row gutter={16} wrap={false}>
+                        <Col flex="250px" className={s.col}>
+                            <Image
+                                className={s.CardContent}
+                                src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`}
+                            />
+                        </Col>
+                        <Col flex="auto" className={s.col}>
+                            <div className={s.animeInfo}>
+                                <Title level={4} className={s.title}>{article.name.main}</Title>
+                                <Title level={5} type="secondary" className={s.subtitle}>
+                                    {article.name.english} ({article.year})
+                                </Title>
+                                <div className={s.tagsContainer}>
+                                    <Tag color="red" className={s.ageRating}>{article.age_rating.label}</Tag>
+                                    {article.genres.map((tag) => (
+                                        <Tag key={tag.id} className={s.tag}>{tag.name}</Tag>
+                                    ))}
+                                    <Tag color="gold">{article.year}</Tag>
+                                    <Tag color="purple">{article.season.description}</Tag>
+                                    <Tag color="green">{article.type.description}</Tag>
+                                </div>
+                                <Paragraph className={s.description} ellipsis={{ rows: 8, expandable: false }}>
+                                    {article.description}
+                                </Paragraph>
                             </div>
-                            <Paragraph className={s.description} ellipsis={{ rows: 8, expandable: false }}>
-                                {article.description}
-                            </Paragraph>
-                        </div>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                </Link>
             </Card>
 
 
@@ -90,7 +94,9 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
                                 {`${article.year} • ${article.season.description} • ${article.type.description} • ${article.age_rating.label}`}
                             </Paragraph>
                             <ArticleTags />
-                            <Button type="primary" >{t('Смотреть')}</Button>
+                            <Link to={`/${AppRoutes.ANIME_DETAILS}/${article.alias}?id=${article.id}`}>
+                                <Button type="primary" >{t('Смотреть')}</Button>
+                            </Link>
                         </div>
                     </section>
                     {article.poster.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${article.poster.optimized.src}`} alt={article.name.main} />}

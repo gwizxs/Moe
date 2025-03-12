@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next"
 interface ArticleListItemProps {
     className?: string
     anime: ReleaseDetailsAnime;
-    id: string
 }
 
 const { Paragraph, Title } = Typography;
@@ -17,14 +16,13 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
     const {
         className,
         anime,
-        id,
     } = props
     const { t } = useTranslation()
 
     const Member = () => {
         return (
             <>
-                {anime.members.map((member) => (
+                {anime?.members?.map((member) => (
                     <Card key={member.id}>
                         {member.nickname}
                         {member.role.description}
@@ -43,17 +41,20 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
     const CardInfoSeries = () => {
         return (
             <>
-                {anime.episodes.map((episode) => (
+                {anime?.episodes?.map((episode) => (
                     <section>
                         <div>
                             <Title level={3}>
-                                {episode.name}
+                                {episode?.name}
+                            </Title>
+                            <Title>
+                            {episode.ordinal} {t("эпизод")}
                             </Title>
                             <Paragraph>
-                                {Math.ceil(episode.duration / 60)}
+                                {`${Math.floor(episode.duration / 60)}:${episode.duration % 60}`}
                             </Paragraph>
                         </div>
-                        {episode.preview.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src}`} alt={episode.name} />}
+                        {episode?.preview?.optimized?.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src}`} alt={episode.name} />}
                     </section>
                 ))}
                 
@@ -65,35 +66,35 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         <Card className={classNames(s.CardContent, {}, [className])}>
             <section className={s.date}>
                 <div>
-                    {anime.poster.optimized.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${anime.poster.optimized.src}`} alt={anime.name.main} />}
+                    {anime?.poster?.optimized?.src && <img className={s.ImgCardContent} src={`${import.meta.env.VITE_IMG_URL}${anime.poster.optimized.src}`} alt={anime.name.main} />}
                 </div>
                 <div>
                     <Title level={3}>
-                        {anime.name.main}
+                        {anime?.name.main}
                     </Title>
                     <Paragraph>
-                        {anime.name.english}
+                        {anime?.name.english}
                     </Paragraph>
                 </div>
                 <Tag>
-                    {anime.age_rating.label}
+                    {anime?.age_rating.label}
                 </Tag>
                 <Tag>
-                    {t("В избранном у")} {anime.added_in_users_favorites} {t("пользователей")}
+                    {t("В избранном у")} {anime?.added_in_users_favorites} {t("пользователей")}
                 </Tag>
                 <Paragraph>
-                    {t("Тип")} {anime.type.value}
-                    {t("Сезон")} {anime.season.value}
-                    {t("Жанры")} {anime.genres.map((genre) => genre.name).join("• ")}
+                    {t("Тип")} {anime?.type.value}
+                    {t("Сезон")} {anime?.season.value}
+                    {t("Жанры")} {anime?.genres?.map((genre) => genre.name).join("• ")}
                 </Paragraph>
                 <Paragraph>
-                    {t("Год выхода")} {anime.year}
+                    {t("Год выхода")} {anime?.year}
                 </Paragraph>
                 <Button>
                     {t("Смотреть с 1 эпизода")}
                 </Button>
                 <Paragraph>
-                    {anime.description}
+                    {anime?.description}
                 </Paragraph>
                 <section>
                     <CardInfoSeries />

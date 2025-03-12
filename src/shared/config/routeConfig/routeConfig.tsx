@@ -26,7 +26,7 @@ export enum AppRoutes {
     RESET_PASSWORD = 'reset-password',
 
     // ВСЕ ЧТО ОТНОСИТСЯ К ВЕБ 
-    ANIME_DETAILS = 'anime_details',
+    ANIME_DETAILS = 'anime-details',
     FILMS = 'films',
     EVENTS = 'events',
     SERIES = 'series',
@@ -93,7 +93,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 
     // ------------- ВЕБ ------------------
     [AppRoutes.ANIME_DETAILS]: {
-        path: `${RoutePath.anime_details}:id`,
+        path: `${RoutePath["anime-details"]}:id`,
         element: <AnimeDetailsPage />,
     },
     [AppRoutes.FILMS]: {
