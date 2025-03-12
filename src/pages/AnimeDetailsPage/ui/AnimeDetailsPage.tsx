@@ -16,20 +16,19 @@ export const AnimeDetailsPage = observer(({ className }: AnimeDetailsPageProps) 
     const { releasesStoreAnimeDetails } = useStore();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const id = searchParams.get("id"); 
+    const id = searchParams.get("id");
 
     useEffect(() => {
         releasesStoreAnimeDetails.getReleasesDetailsAnimeAction(Number(id));
         console.log(releasesStoreAnimeDetails.releasesData);
     }, [id, releasesStoreAnimeDetails]);
 
-    
-
     return (
         <Page className={classNames(s.FilmsPage, {}, [className])}>
-            {releasesStoreAnimeDetails.releasesData?.value && <ArticleDetails anime={releasesStoreAnimeDetails.releasesData?.value as ReleaseDetailsAnime} />}
+                    <ArticleDetails anime={releasesStoreAnimeDetails.releasesData?.value} />
         </Page>
     );
 });
 
 export default AnimeDetailsPage;
+

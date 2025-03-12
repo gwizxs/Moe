@@ -1,0 +1,178 @@
+
+.AnimeCard {
+    padding: 16px;
+    max-width: 85rem; 
+    margin: 0 auto; 
+    padding: 3.75rem 1.25rem; 
+    margin-bottom: 2rem;
+}
+
+.animeInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.description {
+    margin-top: 2rem;
+    max-width: 75rem;
+    font-size: larger;
+    hyphens: auto;
+    overflow-wrap: break-word;
+
+}
+
+.watchButton {
+    margin-top: 1rem;
+    max-width: min-content;
+}
+
+.EpisodesCard {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.EpisodesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
+    gap: 1rem;
+}
+
+.EpisodeItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.EpisodeImg {
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.EpisodeInfo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ImgCardContent {
+    min-width: 20rem;
+    border-radius: 0.5rem;
+}
+
+.gridContainer {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+
+  .cardInfoSer {
+    max-width: 85rem; 
+    margin: 0 auto; 
+    padding: 3.75rem 1.25rem; 
+    margin-bottom: 2rem;
+}
+  .episodeCard {
+    position: relative;
+    height: 8rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .episodeCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  
+  .episodeTitle {
+    font-size: 0.85rem;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  
+  .bottomSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .episodeNumber {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .duration {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+  
+
+  .membersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.memberInfo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.nickname {
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+}
+
+.role {
+    font-size: 14px;
+    color: #aaa;
+}
