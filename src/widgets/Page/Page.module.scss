@@ -1,7 +1,9 @@
 .Page {
     flex-grow: 1;
-    padding: 80px 20px 20px 20px;
+    padding: 80px 20px 20px 0px;
     height: calc(100vh - var(--navbar-height));
+    margin-left: auto;
+    margin-right: auto;
     overflow-y: auto;
     width: 100%;
 }

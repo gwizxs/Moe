@@ -78,7 +78,7 @@ export interface ReleaseDetailsAnime {
     user: string | null;
   }
   
-  interface Episode {
+  export interface Episode {
     id: string;
     name: string;
     ordinal: number;

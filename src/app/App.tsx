@@ -4,7 +4,7 @@ import { useTheme } from "./providers/ThemeProvider"
 import { Suspense } from "react"
 import { RootStoreContext } from "./providers/StoreProvider"
 import { RootStore } from "shared/store/root-store"
-import { Navbar } from "widgets/NavbarNotReg"
+import { LayoutWrapper } from "./providers/router/ui/LayoutWrapper"
 
 function App() {
   const { theme } = useTheme()
@@ -13,8 +13,9 @@ function App() {
     <RootStoreContext.Provider value={new RootStore()}>
       <div className={classNames('app', {}, [theme])}>
         <Suspense fallback="" >
-          <Navbar />
+          <LayoutWrapper>
           <AppRouter />
+          </LayoutWrapper>
         </Suspense>
       </div>
     </RootStoreContext.Provider>

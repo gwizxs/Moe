@@ -7,5 +7,5 @@ export class RootStore {
     articlesViewStore = new ArticlesViewStore();
     sidebarStore = new SidebarStore();
     releasesStoreAnime = new ReleasesStoreAnime();
-    releasesStoreAnimeDetails = new ReleasesStoreDetailsAnime();
+    releasesStoreDetailsAnime = new ReleasesStoreDetailsAnime();
 }

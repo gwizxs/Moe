@@ -1,1 +1,2 @@
-export { AnimeDetailsPageLazy as AnimeDetailsPage } from "./ui/AnimeDetailsPage.lazy";
+export { AnimeDetailsPageLazy as AnimeDetailsPage } from "./ui/AnimeDetailsPage/AnimeDetailsPage.lazy";
+export { AnimeDetailsVideoPageLazy as AnimeDetailsVideoPage } from "./ui/AnimeDetailsVideoPage/AnimeDetailsVideoPage.lazy";

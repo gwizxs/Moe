@@ -1,0 +1,41 @@
+
+
+.Player {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    width: 100vw;
+    height: 90vh;
+
+
+    video {
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+        border-radius: 1rem;
+    }
+
+    .controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .Player {
+        width: 100vw;
+        height: 40vh;
+    }
+    video {
+        width: 100vw;
+        height: 100vh;
+        object-fit:cover;
+    }
+}
+

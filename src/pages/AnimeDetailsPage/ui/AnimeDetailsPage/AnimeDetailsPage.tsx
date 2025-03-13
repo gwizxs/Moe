@@ -6,6 +6,7 @@ import { useStore } from "app/providers/StoreProvider";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ArticleDetails } from "entities/Article";
+import { ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/types";
 
 
 interface AnimeDetailsPageProps {
@@ -13,19 +14,19 @@ interface AnimeDetailsPageProps {
 }
 
 export const AnimeDetailsPage = observer(({ className }: AnimeDetailsPageProps) => {
-    const { releasesStoreAnimeDetails } = useStore();
+    const { releasesStoreDetailsAnime } = useStore();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
 
     useEffect(() => {
-        releasesStoreAnimeDetails.getReleasesDetailsAnimeAction(Number(id));
-        console.log(releasesStoreAnimeDetails.releasesData);
-    }, [id, releasesStoreAnimeDetails]);
+        releasesStoreDetailsAnime.getReleasesDetailsAnimeAction(Number(id));
+        console.log(releasesStoreDetailsAnime.releasesData);
+    }, [id, releasesStoreDetailsAnime]);
 
     return (
         <Page className={classNames(s.FilmsPage, {}, [className])}>
-                    <ArticleDetails anime={releasesStoreAnimeDetails.releasesData?.value} />
+            <ArticleDetails anime={releasesStoreDetailsAnime.releasesData?.value as ReleaseDetailsAnime} />
         </Page>
     );
 });

@@ -4,10 +4,12 @@ import s from './ArticleDetails.module.scss'
 import { Button, Card, Col, Descriptions, Row, Tag, Typography, Image } from "antd"
 import { ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/types"
 import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
+import { AppRoutes } from "shared/config/routeConfig/routeConfig"
 
 interface ArticleListItemProps {
     className?: string
-    anime: ReleaseDetailsAnime;
+    anime: ReleaseDetailsAnime | null;
 }
 
 const { Paragraph, Title } = Typography;
@@ -44,12 +46,16 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         return (
             <section className={s.gridContainer}>
                 {anime?.episodes?.map((episode) => (
-                    <div
-                        key={episode.ordinal}
-                        className={s.episodeCard}
+                    <Link 
+                        to={{
+                            pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime.alias}`,
+                            search: `id=${anime.id}&episode=${episode.id}`,
+                        }} 
+                        key={episode.id} 
+                        className={s.episodeCard} 
                         style={{
-                            backgroundImage: episode.preview?.optimized?.src
-                                ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})`
+                            backgroundImage: episode.preview?.optimized?.src 
+                                ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})` 
                                 : "none",
                         }}
                     >
@@ -65,7 +71,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                                 </Paragraph>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </section>
         )

@@ -1,11 +1,11 @@
 import { AnimeDetailsPage } from "pages/AnimeDetailsPage";
+import { AnimeDetailsVideoPage } from "pages/AnimeDetailsPage/ui/AnimeDetailsVideoPage/AnimeDetailsVideoPage";
 import { LoginPage } from "pages/Auth/LoginPage";
 import { NewPasswordPage } from "pages/Auth/NewPasswordPage";
 import { RegistrationPage } from "pages/Auth/RegistrationPage";
 import { ResetPasswordPage } from "pages/Auth/ResetPasswordPage";
 import { FilmsPage } from "pages/FilmsPage";
 import LandingPage from "pages/LandingPage/ui/LandingPage";
-import { MainPage } from "pages/MainPage";
 import { NotFoundPage } from "pages/NotFoundPage";
 import { SeriesPage } from "pages/SeriesPages";
 import { RouteProps } from "react-router-dom";
@@ -28,10 +28,9 @@ export enum AppRoutes {
     // ВСЕ ЧТО ОТНОСИТСЯ К ВЕБ 
     ANIME_DETAILS = 'anime-details',
     FILMS = 'films',
-    EVENTS = 'events',
     SERIES = 'series',
-    EDUCATION = 'education',
-    HELP = 'help',
+    ANIME_DETAILS_VIDEO = 'anime-details-video',
+
 
 
     // ДОЛЖНА БЫТЬ САМОЙ ПОСЛЕДНЕЙ
@@ -51,10 +50,8 @@ export const RoutePath: Record<AppRoutes, string> = {
     // ------------- ВЕБ ------------------
     [AppRoutes.ANIME_DETAILS]: '/anime-details/', // + id
     [AppRoutes.FILMS]: '/films',
-    [AppRoutes.EVENTS]: '/events',
     [AppRoutes.SERIES]: '/series',
-    [AppRoutes.EDUCATION]: '/education',
-    [AppRoutes.HELP]: '/help',
+    [AppRoutes.ANIME_DETAILS_VIDEO]: '/anime-details-video/',
 
     // ------------- ВЕБ ------------------
 
@@ -100,21 +97,14 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: RoutePath.films,
         element: <FilmsPage />,
     },
-    [AppRoutes.EVENTS]: {
-        path: RoutePath.events,
-        element: <MainPage />,
-    },
     [AppRoutes.SERIES]: {
         path: RoutePath.series,
         element: <SeriesPage />,
     },
-    [AppRoutes.EDUCATION]: {
-        path: RoutePath.education,
-        element: <MainPage />,
-    },
-    [AppRoutes.HELP]: {
-        path: RoutePath.help,
-        element: <MainPage />,
+    [AppRoutes.ANIME_DETAILS_VIDEO]: {
+        path: `${RoutePath["anime-details-video"]}:id`,
+        hideLayout: true,
+        element: <AnimeDetailsVideoPage />,
     },
 
     // ------------- ВЕБ ------------------
