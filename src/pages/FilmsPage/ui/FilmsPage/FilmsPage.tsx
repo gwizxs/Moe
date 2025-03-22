@@ -27,11 +27,6 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
         fetchData();
     }, [releasesStoreAnime]);
     
-
-    if (releasesStoreAnime.releasesData?.state === "pending") {
-        return <div>Загрузка...</div>;
-    }
-
     if (releasesStoreAnime.releasesData?.state === "rejected") {
         return <div>Ошибка загрузки данных</div>;
     }
@@ -42,6 +37,9 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
                 <ArticleViewSwitcher view={articlesViewStore.view} onViewClick={onChangeView} />
             </div>
             <ArticleList
+                isLoading={
+                    releasesStoreAnime.releasesData?.state === "pending"
+                }
                 view={articlesViewStore.view}
                 articles={
                     releasesStoreAnime.releasesData?.value?.data || []
@@ -52,3 +50,4 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
 });
 
 export default FilmsPage;
+

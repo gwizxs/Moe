@@ -15,4 +15,21 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
+    .card {
+        display: inline-flex;
+        height: 300px;
+        width: 280px;
+    }
+}
+
+.card {
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+.BIG {
+    .card {
+        margin-right: 15px;
+    }
 }
