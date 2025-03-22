@@ -49,7 +49,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                     <Link 
                         to={{
                             pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime.alias}`,
-                            search: `id=${anime.id}&episode=${episode.id}`,
+                            search: `id=${anime.id}&sort_order=${episode.sort_order}`,
                         }} 
                         key={episode.id} 
                         className={s.episodeCard} 
@@ -91,8 +91,8 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                         )}
                     </Col>
                     <Col span={16} className={s.animeInfo}>
-                        <Title level={1}>{anime?.name.main}</Title>
-                        {anime?.name.english && <Paragraph>{anime?.name.english}</Paragraph>}
+                        <Title level={1}>{anime?.name?.main}</Title>
+                         <Paragraph>{anime?.name.english}</Paragraph>
 
                         <div className={s.tagsContainer}>
                             <Tag>{anime?.age_rating.label}</Tag>
