@@ -15,19 +15,16 @@ export class ReleasesStoreDetailsAnime {
 
     getReleasesDetailsAnimeAction = async (id: number) => {
         try {
-            console.log("getReleasesDetailsAnimeAction");
             this.releasesData =
                 fromPromise<AxiosResponse<ReleaseDetailsAnime>>(
                     getReleasesAnimePlayer(id)
                 );
             
             this.releasesData.then(response => {
-                console.log("API RESPONSE FULL:", response);
                 
                 if (response && response.data) {
                     runInAction(() => {
                         this.currentAnime = response.data;
-                        console.log("CURRENT ANIME SET:", this.currentAnime);
                     });
                 }
             });
@@ -58,16 +55,12 @@ export class ReleasesStoreDetailsAnime {
 
     get episodes(): Episode[] {
         if (this.currentAnime && this.currentAnime.episodes) {
-            console.log("EPISODES FROM currentAnime:", this.currentAnime.episodes.length);
             return this.currentAnime.episodes;
         }
         
         if (!this.releasesData || this.releasesData.state !== "fulfilled") {
-            console.log("EPISODES GETTER: Data not fulfilled", this.releasesData?.state);
             return [];
         }
-        
-        console.log("EPISODES GETTER: Trying to get episodes from response");
         
         let episodes: Episode[] = [];
         
@@ -76,7 +69,6 @@ export class ReleasesStoreDetailsAnime {
         if (responseData) {
             if (Array.isArray(responseData.episodes)) {
                 episodes = responseData.episodes;
-                console.log("FOUND EPISODES in response.data.episodes:", episodes.length);
                 runInAction(() => {
                     this.currentAnime = responseData;
                 });
@@ -85,11 +77,9 @@ export class ReleasesStoreDetailsAnime {
                 runInAction(() => {
                     this.currentAnime = responseData;
                 });
-                console.log("SETTING currentAnime from response.data");
                 
                 if (Array.isArray(responseData.episodes)) {
                     episodes = responseData.episodes;
-                    console.log("FOUND EPISODES in currentAnime.episodes:", episodes.length);
                 }
             }
         }
@@ -98,17 +88,11 @@ export class ReleasesStoreDetailsAnime {
     }
 
     getEpisodeBySort(sortOrder: number): Episode | undefined {
-        console.log("FINDING EPISODE with sort_order:", sortOrder);
-        console.log("EPISODES available:", this.episodes.length);
-        
         if (this.episodes.length === 0) {
-            console.log("NO EPISODES AVAILABLE");
             return undefined;
         }
         
         const foundEpisode = this.episodes.find((ep: Episode) => ep.sort_order === sortOrder);
-        console.log("Found episode:", foundEpisode);
-        console.log("Video URL:", foundEpisode?.hls_1080);
         return foundEpisode;
     }
 
