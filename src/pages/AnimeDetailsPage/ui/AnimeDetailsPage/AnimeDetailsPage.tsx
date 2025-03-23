@@ -14,19 +14,19 @@ interface AnimeDetailsPageProps {
 }
 
 export const AnimeDetailsPage = observer(({ className }: AnimeDetailsPageProps) => {
-    const { releasesStoreDetailsAnime } = useStore();
+    const { releasesStoreAnimeInfo } = useStore();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
 
     useEffect(() => {
-        releasesStoreDetailsAnime.getReleasesDetailsAnimeAction(Number(id));
-        console.log(releasesStoreDetailsAnime.releasesData);
-    }, [id, releasesStoreDetailsAnime]);
+        releasesStoreAnimeInfo.getReleasesDetailsAnimeAction(Number(id));
+        console.log(releasesStoreAnimeInfo.releasesData);
+    }, [id, releasesStoreAnimeInfo]);
 
     return (
         <Page className={classNames(s.FilmsPage, {}, [className])}>
-            <ArticleDetails anime={releasesStoreDetailsAnime.releasesData?.value as ReleaseDetailsAnime} />
+            <ArticleDetails anime={releasesStoreAnimeInfo.releasesData?.value as ReleaseDetailsAnime} />
         </Page>
     );
 });
