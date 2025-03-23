@@ -36,12 +36,6 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         )
     }
 
-    /*
-    TODO: 
-    при нажатии на карточку отправляем пользователя на эпизод, показываем плеер anime.episodes.hls_{значение качества которое выберет}
-    отрисовываем название аниме и добавляем скип опенинга и эндинга, в виде перехода используем уникальный id для каждого плеера стор не меняется
-    
-    */
     const CardInfoSeries = () => {
         return (
             <section className={s.gridContainer}>

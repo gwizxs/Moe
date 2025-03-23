@@ -7,10 +7,13 @@ import Player from "shared/ui/Player/Player";
 import { useStore } from "app/providers/StoreProvider";
 import { useSearchParams } from "react-router-dom";
 import { Episode } from "shared/api/services/releases-anime-details/types";
-
+import { PageLoader } from "widgets/PageLoader/ui/PageLoader";
+import { Typography } from "antd";
 interface AnimeDetailsVideoPageProps {
   className?: string;
 }
+
+const { Title } = Typography;
 
 export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoPageProps) => {
   const { releasesStoreDetailsAnime } = useStore();
@@ -23,10 +26,7 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
   
   const sortOrder = (() => {
     const parsedOrder = Number(sortOrderParam);
-    console.log("Sort order from URL:", sortOrderParam, "Parsed:", parsedOrder);
-    
     if (isNaN(parsedOrder) || parsedOrder <= 0) {
-      console.log("Using default sort order 1");
       return 1;
     }
     return parsedOrder;
@@ -35,13 +35,11 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
   useEffect(() => {
     const loadAnimeAndEpisode = async () => {
       if (id && !isNaN(Number(id))) {
-        console.log("Loading anime with ID:", id);
         setIsLoading(true);
         
         await releasesStoreDetailsAnime.getReleasesDetailsAnimeAction(Number(id));
         
         const foundEpisode = await releasesStoreDetailsAnime.getEpisodeWhenReady(sortOrder);
-        console.log("Episode after waiting:", foundEpisode);
         setEpisode(foundEpisode);
         setIsLoading(false);
       } else {
@@ -52,28 +50,34 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
     loadAnimeAndEpisode();
   }, [id, sortOrder, releasesStoreDetailsAnime]);
 
-  useEffect(() => {
-    console.log("Current episodes available:", releasesStoreDetailsAnime.episodes.length);
-  }, [releasesStoreDetailsAnime.episodes]);
+  const getPreviewUrl = () => {
+    if (!episode || !episode.preview) return undefined;
+    
+    if (episode.preview.optimized && episode.preview.optimized.src) {
+      return episode.preview.optimized.src;
+    }
+    
+    return episode.preview.src;
+  };
 
   return (
     <Page className={classNames(s.AnimeDetailsVideoPage, {}, [className])}>
-      {isLoading && <p>Загрузка...</p>}
+      {isLoading && <PageLoader />}
       {releasesStoreDetailsAnime.releasesData?.state === "rejected" && (
-        <p>Ошибка загрузки: {releasesStoreDetailsAnime.error || 'Неизвестная ошибка'}</p>
+        <Title className={s.error} level={3}>Ошибка загрузки: {releasesStoreDetailsAnime.error || 'Неизвестная ошибка'}</Title>
       )}
       {!isLoading && episode && episode.hls_1080 ? (
         <Player
           url={episode.hls_1080}
           opening={episode.opening}
           ending={episode.ending}
-          preview={episode.preview.optimized.src}
+          preview={getPreviewUrl()}
         />
       ) : !isLoading && (
-        <div>
-          <p>Эпизод не найден или видео недоступно</p>
+        <div className={s.error}>
+          <Title level={3}>Эпизод не найден или видео недоступно</Title>
           {releasesStoreDetailsAnime.episodes.length > 0 && (
-            <p>Доступно эпизодов: {releasesStoreDetailsAnime.episodes.length}, текущий sort_order: {sortOrder}</p>
+            <Title level={5}>Доступно эпизодов: {releasesStoreDetailsAnime.episodes.length}, текущий: {sortOrder}</Title>
           )}
         </div>
       )}

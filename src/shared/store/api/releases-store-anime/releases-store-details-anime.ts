@@ -2,7 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 import { AxiosResponse } from "axios";
 import { Episode, ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/types";
-import { getReleasesDetailsAnime } from "shared/api/services/releases-anime-details/api";
+import { getReleasesAnimePlayer } from "shared/api/services/releases-anime-player/api";
 
 export class ReleasesStoreDetailsAnime {
     releasesData?: IPromiseBasedObservable<AxiosResponse<ReleaseDetailsAnime>>;
@@ -18,7 +18,7 @@ export class ReleasesStoreDetailsAnime {
             console.log("getReleasesDetailsAnimeAction");
             this.releasesData =
                 fromPromise<AxiosResponse<ReleaseDetailsAnime>>(
-                    getReleasesDetailsAnime(id)
+                    getReleasesAnimePlayer(id)
                 );
             
             this.releasesData.then(response => {

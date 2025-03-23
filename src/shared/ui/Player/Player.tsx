@@ -28,7 +28,7 @@ export const Player = (props: PlayerProps) => {
     const [currentTime, setCurrentTime] = useState<number>(0);
     const { t } = useTranslation();
 
-    const previewUrl = typeof preview === 'object' ? preview.src : preview;
+    const previewUrl = preview ? (typeof preview === 'object' ? preview.src : preview) : undefined;
 
     const handleProgress = (state: { playedSeconds: number }) => {
         setCurrentTime(state.playedSeconds);
