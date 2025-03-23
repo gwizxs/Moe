@@ -10,8 +10,8 @@ interface PageProps {
 
 export const Page = ({className, children}: PageProps) => {
     return (
-        <section className={classNames(s.Page, {}, [className])}>
+        <main className={classNames(s.Page, {}, [className])}>
             {children}
-        </section>
+        </main>
     );
 };

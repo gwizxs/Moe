@@ -24,7 +24,10 @@ export const lightThemeConfig: ThemeConfig = {
       Card: {
          bodyPadding: 0,
          colorBgContainer: '#72727209',
-      }
+      },
+      Carousel: {
+         marginXXS: 8
+       }
    },
  };
 
@@ -59,6 +62,9 @@ export const lightThemeConfig: ThemeConfig = {
         colorBgContainer: '#212124',
         bodyPadding: 0
       },
+      Carousel: {
+         marginXXS: 8
+       }
    },
  };
 

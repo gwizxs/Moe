@@ -1,10 +1,13 @@
-
+import { Page } from "widgets/Page/Page"
+import { Carousel } from "widgets/Carousel/Carousel"
+ 
 
 export const LandingPage = () => {
     return (
-        <div>
-            LandingPage
-        </div>
+        <Page>
+            <Carousel />
+            <br />
+        </Page>
     )
 }
 
