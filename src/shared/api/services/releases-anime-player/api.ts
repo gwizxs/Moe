@@ -8,7 +8,6 @@ import { ReleaseDetailsAnime } from "../releases-anime-details/types";
 
 export const getReleasesAnimePlayer = async (id: number): Promise<AxiosResponse<ReleaseDetailsAnime>> => {
     try {
-        console.log("API CALLING URL:", API_URL.releases_anime_details(id));
         const response = await baseInstanceV1.get(API_URL.releases_anime_details(id));
         
         console.log("API GET Response structure:", {
@@ -20,7 +19,6 @@ export const getReleasesAnimePlayer = async (id: number): Promise<AxiosResponse<
         });
         
         if (response.data && !response.data.episodes && response.data.data && Array.isArray(response.data.data.episodes)) {
-            console.log("FIXING NESTED RESPONSE FORMAT");
             response.data = response.data.data;
         }
         

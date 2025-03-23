@@ -54,10 +54,10 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
     if (!episode || !episode.preview) return undefined;
     
     if (episode.preview.optimized && episode.preview.optimized.src) {
-      return episode.preview.optimized.src;
+      return `${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src}`;
     }
     
-    return episode.preview.src;
+    return `${import.meta.env.VITE_IMG_URL}${episode.preview.src}`;
   };
 
   return (
