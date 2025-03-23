@@ -40,27 +40,28 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         return (
             <section className={s.gridContainer}>
                 {anime?.episodes?.map((episode) => (
-                    <Link 
+                    <Link
                         to={{
                             pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime.alias}`,
                             search: `id=${anime.id}&sort_order=${episode.sort_order}`,
-                        }} 
-                        key={episode.id} 
-                        className={s.episodeCard} 
+                        }}
+                        target="_blank"
+                        key={episode.id}
+                        className={s.episodeCard}
                         style={{
-                            backgroundImage: episode.preview?.optimized?.src 
-                                ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})` 
+                            backgroundImage: episode.preview?.optimized?.src
+                                ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})`
                                 : "none",
                         }}
                     >
                         <div className={s.overlay}></div>
                         <div className={s.content}>
-                            <Paragraph style={{ color: "var(--inverted-bg-color)"}} className={s.episodeTitle}>{episode.name}</Paragraph>
+                            <Paragraph style={{ color: "var(--inverted-bg-color)" }} className={s.episodeTitle}>{episode.name}</Paragraph>
                             <div className={s.bottomSection}>
-                                <Title level={4} style={{ color: "var(--inverted-bg-color)"}} className={s.episodeNumber}>
+                                <Title level={4} style={{ color: "var(--inverted-bg-color)" }} className={s.episodeNumber}>
                                     {episode.ordinal} {t("эпизод")}
                                 </Title>
-                                <Paragraph style={{ color: "var(--inverted-bg-color)"}} className={s.duration}>
+                                <Paragraph style={{ color: "var(--inverted-bg-color)" }} className={s.duration}>
                                     {`${Math.floor(episode.duration / 60)}:${String(episode.duration % 60).padStart(2, "0")}`}
                                 </Paragraph>
                             </div>
@@ -86,7 +87,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                     </Col>
                     <Col span={16} className={s.animeInfo}>
                         <Title level={1}>{anime?.name?.main}</Title>
-                         <Paragraph>{anime?.name.english}</Paragraph>
+                        <Paragraph>{anime?.name.english}</Paragraph>
 
                         <div className={s.tagsContainer}>
                             <Tag>{anime?.age_rating.label}</Tag>
@@ -105,10 +106,20 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                             </Descriptions.Item>
                             <Descriptions.Item label={t("Год выхода")}>{anime?.year}</Descriptions.Item>
                         </Descriptions>
-
-                        <Button type="primary" className={s.watchButton}>
+                        <Link
+                            to={{
+                                pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime?.alias}`,
+                                search: `id=${anime?.id}&sort_order=1`,
+                            }}
+                            target="_blank"
+                        >
+                            <Button
+                                type="primary"
+                                className={s.watchButton}
+                        >
                             {t("Смотреть с 1 эпизода")}
                         </Button>
+                        </Link>
                     </Col>
                     {anime?.description && (
                         <Col span={24}>
