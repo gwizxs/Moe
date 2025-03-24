@@ -2,7 +2,6 @@
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import classNames from 'shared/library/classNames/classNames';
-import s from './LangSwitcher.module.scss'
 import { Button } from 'antd';
 
 interface LangSwitcherProps {
@@ -21,7 +20,7 @@ export const LangSwitcher = observer(({ short, className }: LangSwitcherProps) =
         <Button
         type='primary'
         onClick={toggle}
-        className={classNames(s.langSwitcher, {}, [className])}>
+        className={classNames('', {}, [className])}>
             {t(short ? 'Короткий язык' : 'Язык')}
         </Button>
     );
