@@ -5,6 +5,7 @@ import { NewPasswordPage } from "pages/Auth/NewPasswordPage";
 import { RegistrationPage } from "pages/Auth/RegistrationPage";
 import { ResetPasswordPage } from "pages/Auth/ResetPasswordPage";
 import { FilmsPage } from "pages/FilmsPage";
+import { FranchisesPage } from "pages/FranchisesPage";
 import LandingPage from "pages/LandingPage/ui/LandingPage";
 import { NotFoundPage } from "pages/NotFoundPage";
 import { SeriesPage } from "pages/SeriesPages";
@@ -28,6 +29,7 @@ export enum AppRoutes {
     // ВСЕ ЧТО ОТНОСИТСЯ К ВЕБ 
     ANIME_DETAILS = 'anime-details',
     RELEASES = 'releases',
+    FRANCHISES = 'franchises',
     SERIES = 'series',
     ANIME_DETAILS_VIDEO = 'anime-details-video',
 
@@ -50,6 +52,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     // ------------- ВЕБ ------------------
     [AppRoutes.ANIME_DETAILS]: '/anime-details/', // + id
     [AppRoutes.RELEASES]: '/releases',
+    [AppRoutes.FRANCHISES]: '/franchises',
     [AppRoutes.SERIES]: '/series',
     [AppRoutes.ANIME_DETAILS_VIDEO]: '/anime-details-video/',
 
@@ -100,6 +103,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.SERIES]: {
         path: RoutePath.series,
         element: <SeriesPage />,
+    },
+    [AppRoutes.FRANCHISES]: {
+        path: RoutePath.franchises,
+        element: <FranchisesPage />,
     },
     [AppRoutes.ANIME_DETAILS_VIDEO]: {
         path: `${RoutePath["anime-details-video"]}:id`,

@@ -18,7 +18,7 @@ export const Navbar = ({ className }: NavbarProps) => {
   return (
     <nav className={classNames(s.navbar, {}, [className])}>
       <Flex justify="space-between" align="center" className={s.row}>
-        <Title level={3} className={s.textExtr}>
+        <Title level={3} className={s.text}>
           <span className={s.logo}>Moe</span>
         </Title>
         <NavbarItems items={menu} isCollapsed={false} className={s.sidebar} />

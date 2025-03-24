@@ -1,0 +1,1 @@
+export { FranchisesPageLazy as FranchisesPage } from './ui/Franchises.lazy';
