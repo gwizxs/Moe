@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import s from './SidebarItems.module.scss';
+import s from './NavbarItems.module.scss';
 import { observer } from 'mobx-react-lite';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
@@ -19,7 +19,7 @@ interface SidebarMenuProps {
   className?: string;
 }
 
-export const SidebarItems = observer(({ items, isCollapsed }: SidebarMenuProps) => {
+export const NavbarItems = observer(({ items, isCollapsed }: SidebarMenuProps) => {
   return (
     <ul className={s.menu}>
       <SidebarList items={items} isCollapsed={isCollapsed} />
@@ -54,4 +54,4 @@ const SidebarList = observer(({ items, isCollapsed }: { items: MenuItem[]; isCol
   );
 });
 
-export default SidebarItems;
+export default NavbarItems;

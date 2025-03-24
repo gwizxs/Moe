@@ -75,6 +75,7 @@
 
 .bannerOngoing {
     background-color: #1677ff;
+    color: var(--inverted-bg-color);
     padding: 0.2rem 0.7rem;
     border-radius: 1rem;
     font-size: 0.875rem;
@@ -97,7 +98,6 @@
             .skeletonImage {
                 width: 100%;
                 height: 100%;
-                background-color: var(--inverted-bg-color);
             }
         }
     }

@@ -27,7 +27,7 @@ export enum AppRoutes {
 
     // ВСЕ ЧТО ОТНОСИТСЯ К ВЕБ 
     ANIME_DETAILS = 'anime-details',
-    FILMS = 'films',
+    RELEASES = 'releases',
     SERIES = 'series',
     ANIME_DETAILS_VIDEO = 'anime-details-video',
 
@@ -49,7 +49,7 @@ export const RoutePath: Record<AppRoutes, string> = {
 
     // ------------- ВЕБ ------------------
     [AppRoutes.ANIME_DETAILS]: '/anime-details/', // + id
-    [AppRoutes.FILMS]: '/films',
+    [AppRoutes.RELEASES]: '/releases',
     [AppRoutes.SERIES]: '/series',
     [AppRoutes.ANIME_DETAILS_VIDEO]: '/anime-details-video/',
 
@@ -93,8 +93,8 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: `${RoutePath["anime-details"]}:id`,
         element: <AnimeDetailsPage />,
     },
-    [AppRoutes.FILMS]: {
-        path: RoutePath.films,
+    [AppRoutes.RELEASES]: {
+        path: RoutePath.releases,
         element: <FilmsPage />,
     },
     [AppRoutes.SERIES]: {
