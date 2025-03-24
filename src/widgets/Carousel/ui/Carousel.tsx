@@ -7,6 +7,7 @@ import { Anime, AnimeResponse } from "shared/api/services/catalog-anime-releases
 import { PlayCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from "react-i18next";
 import { CarouselSkeleton } from "./CarouselSkeleton";
+import { Link } from "react-router-dom";
 
 const { Title, Text } = Typography;
 
@@ -19,7 +20,7 @@ export const Carousel = observer(() => {
     useEffect(() => {
         catalogAnimeStoreReleases.getCatalogAnimeReleasesAction()
     }, [catalogAnimeStoreReleases])
-    
+
     const isLoading = catalogAnimeStoreReleases.releasesData?.state === 'pending';
     const animeResponse = catalogAnimeStoreReleases.releasesData?.state === 'fulfilled'
         ? catalogAnimeStoreReleases.releasesData.value?.data || []
@@ -28,7 +29,7 @@ export const Carousel = observer(() => {
     const renderBannerItem = (anime: Anime) => (
         <div key={anime.id} className={s.bannerItem}>
             <div className={s.bannerOverlay} />
-            <div 
+            <div
                 className={s.bannerImage}
                 style={{ backgroundImage: `url(${import.meta.env.VITE_IMG_URL}${anime.poster.optimized.src})` }}
             />
@@ -43,14 +44,16 @@ export const Carousel = observer(() => {
                 <Title level={5} className={s.bannerDescription} ellipsis={{ rows: 3 }}>
                     {anime.description}
                 </Title>
-                <Button 
-                    type="primary" 
-                    size="large" 
-                    icon={<PlayCircleOutlined size={24}  />} 
-                    className={s.watchButton}
-                >
-                    {t("Смотреть")}
-                </Button>
+                <Link to={`anime-details/${anime.alias}?id=${anime.id}`}>
+                    <Button
+                        type="primary"
+                        size="large"
+                        icon={<PlayCircleOutlined size={24} />}
+                        className={s.watchButton}
+                    >
+                        {t("Смотреть")}
+                    </Button>
+                </Link>
             </div>
         </div>
     );
