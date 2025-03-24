@@ -1,4 +1,5 @@
 export const API_URL = {
     releases_anime: () => 'anime/catalog/releases',
     releases_anime_details: (id: number) => `anime/releases/${id}`,
+    releases_catalog_with_carousel: () => 'anime/catalog/releases?page=1&limit=5',
 }

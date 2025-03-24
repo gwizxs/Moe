@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable, runInAction, computed } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 import { AxiosResponse } from "axios";
 import { Episode, ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/types";
@@ -8,30 +8,38 @@ export class ReleasesStoreDetailsAnime {
     releasesData?: IPromiseBasedObservable<AxiosResponse<ReleaseDetailsAnime>>;
     currentAnime?: ReleaseDetailsAnime;
     error?: string;
+    episodesCache: Map<number, Episode> = new Map();
     
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this, {
+            episodes: computed,
+            getEpisodeBySort: false
+        });
     }
 
     getReleasesDetailsAnimeAction = async (id: number) => {
+        this.episodesCache.clear();
+        this.error = undefined;
+        
         try {
-            this.releasesData =
-                fromPromise<AxiosResponse<ReleaseDetailsAnime>>(
-                    getReleasesAnimePlayer(id)
-                );
-            
-            this.releasesData.then(response => {
-                
-                if (response && response.data) {
-                    runInAction(() => {
-                        this.currentAnime = response.data;
-                    });
-                }
-            });
+            const promiseResult = getReleasesAnimePlayer(id);
+            this.releasesData = fromPromise<AxiosResponse<ReleaseDetailsAnime>>(promiseResult);
             
             this.releasesData.case({
-                fulfilled: () => {},
-                pending: () => {},
+                fulfilled: (response) => {
+                    if (response && response.data) {
+                        runInAction(() => {
+                            this.currentAnime = response.data;
+                            if (response.data.episodes) {
+                                response.data.episodes.forEach(episode => {
+                                    this.episodesCache.set(episode.sort_order, episode);
+                                });
+                            }
+                        });
+                    }
+                },
+                pending: () => {
+                },
                 rejected: (error: Error) => {
                     runInAction(() => {
                         console.error("Promise rejection in anime details:", error);
@@ -50,11 +58,20 @@ export class ReleasesStoreDetailsAnime {
     }
 
     setCurrentAnime = (anime: ReleaseDetailsAnime) => {
-        this.currentAnime = anime;
+        runInAction(() => {
+            this.currentAnime = anime;
+            
+            this.episodesCache.clear();
+            if (anime.episodes) {
+                anime.episodes.forEach(episode => {
+                    this.episodesCache.set(episode.sort_order, episode);
+                });
+            }
+        });
     }
 
     get episodes(): Episode[] {
-        if (this.currentAnime && this.currentAnime.episodes) {
+        if (this.currentAnime?.episodes) {
             return this.currentAnime.episodes;
         }
         
@@ -62,44 +79,43 @@ export class ReleasesStoreDetailsAnime {
             return [];
         }
         
-        let episodes: Episode[] = [];
-        
         const responseData = this.releasesData.value?.data;
         
         if (responseData) {
             if (Array.isArray(responseData.episodes)) {
-                episodes = responseData.episodes;
                 runInAction(() => {
                     this.currentAnime = responseData;
                 });
-            } 
-            else if (responseData.id && typeof responseData.id === 'number') {
-                runInAction(() => {
-                    this.currentAnime = responseData;
-                });
-                
-                if (Array.isArray(responseData.episodes)) {
-                    episodes = responseData.episodes;
-                }
+                return responseData.episodes;
             }
         }
         
-        return episodes;
+        return [];
     }
 
     getEpisodeBySort(sortOrder: number): Episode | undefined {
-        if (this.episodes.length === 0) {
-            return undefined;
+        if (this.episodesCache.has(sortOrder)) {
+            return this.episodesCache.get(sortOrder);
         }
         
         const foundEpisode = this.episodes.find((ep: Episode) => ep.sort_order === sortOrder);
+        
+        if (foundEpisode) {
+            this.episodesCache.set(sortOrder, foundEpisode);
+        }
+        
         return foundEpisode;
     }
 
     async getEpisodeWhenReady(sortOrder: number): Promise<Episode | undefined> {
+        if (this.episodesCache.has(sortOrder)) {
+            return this.episodesCache.get(sortOrder);
+        }
+        
         if (this.episodes.length > 0) {
             return this.getEpisodeBySort(sortOrder);
         }
+        
         if (this.releasesData && this.releasesData.state === "pending") {
             try {
                 await this.releasesData;
@@ -111,5 +127,8 @@ export class ReleasesStoreDetailsAnime {
         }
 
         return undefined;
+    }
+    dispose() {
+        this.episodesCache.clear();
     }
 }
