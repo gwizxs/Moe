@@ -10,9 +10,6 @@ export const CarouselSkeleton = () => {
                     <Skeleton.Image 
                         active
                         className={s.skeletonImage}
-                        style={{
-                            backgroundColor: 'var(--inverted-bg-color)'
-                        }}
                     />
                 </div>
             </div>

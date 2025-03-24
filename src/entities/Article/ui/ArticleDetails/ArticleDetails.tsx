@@ -76,7 +76,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         <>
             <Card className={classNames(s.AnimeCard, {}, [className])}>
                 <Row gutter={[16, 16]}>
-                    <Col flex="250px">
+                    <Col flex="15.625rem">
                         {anime?.poster?.optimized?.src && (
                             <Image
                                 className={s.ImgCardContent}
