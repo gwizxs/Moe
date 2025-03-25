@@ -1,0 +1,18 @@
+    .FranchisesPageHeader {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        padding: 1rem 8rem;
+        width: 100%;
+        align-items: start;
+        text-align: start;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .search {
+        width: 90rem;
+    }

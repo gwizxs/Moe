@@ -9,8 +9,9 @@ import { useStore } from "app/providers/StoreProvider"
 import { useEffect } from "react"
 import { Flex, Typography } from "antd"
 import { observer } from "mobx-react-lite"
-import { RandomFranchisesResponse } from "shared/api/services/franchises-anime/random-franchises/types"
 import { FranchisesList } from "entities/Franchise"
+import { AppRoutes } from "shared/config/routeConfig/routeConfig"
+import { FranchisesResponse } from "shared/api/services/franchises-anime/types"
 
 interface LandingPageProps {
     className?: string
@@ -41,7 +42,7 @@ export const LandingPage = observer((props: LandingPageProps) => {
         <Page className={classNames(s.LandingPage, {}, [className])}>
             <Carousel />
             <Flex vertical gap={16}>
-                <AppText >
+                <AppText link={AppRoutes.RELEASES}>
                     {t('Релизы')}
                 </AppText>
                 <ArticleList
@@ -54,16 +55,17 @@ export const LandingPage = observer((props: LandingPageProps) => {
                 />
             </Flex>
             <Flex vertical gap={16}>
-                <AppText >
+                <AppText link={AppRoutes.FRANCHISES} >
                     {t('Франшизы')}
                 </AppText>
                 <FranchisesList
+                    isLandingPage={true}
                     className={s.franchisesList}
                     isLoading={
                         franchisesStoreAnime.franchisesData?.state === "pending"
                     }
                     franchises={
-                        franchisesStoreAnime.franchisesData?.value as RandomFranchisesResponse
+                        franchisesStoreAnime.franchisesData?.value as FranchisesResponse
                     }
                 />
             </Flex>

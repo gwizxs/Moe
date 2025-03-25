@@ -9,7 +9,7 @@ interface IImage {
   optimized: IOptimizedImage;
 }
 
-interface IRandomFranchise {
+interface IFranchise {
   id: string;
   name: string;
   image: IImage;
@@ -23,4 +23,4 @@ interface IRandomFranchise {
   total_duration_in_seconds: number;
 }
 
-export type RandomFranchisesResponse = IRandomFranchise[];
+export type FranchisesResponse = IFranchise[];

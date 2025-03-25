@@ -5,11 +5,11 @@ import s from './FranchisesItem.module.scss'
 import { Card, Space, Typography } from "antd"
 import { Link } from "react-router-dom"
 import { AppRoutes } from "shared/config/routeConfig/routeConfig"
-import { RandomFranchisesResponse } from "shared/api/services/franchises-anime/random-franchises/types"
+import { FranchisesResponse } from "shared/api/services/franchises-anime/types"
 
 interface FranchisesItemProps {
     className?: string;
-    franchise?: RandomFranchisesResponse[0];
+    franchise?: FranchisesResponse[0];
 }
 
 const { Text } = Typography;

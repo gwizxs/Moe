@@ -5,7 +5,8 @@ import { Page } from "widgets/Page/Page";
 import { FranchisesList } from "entities/Franchise";
 import { useStore } from "app/providers/StoreProvider";
 import { useEffect } from "react";
-import { RandomFranchisesResponse } from "shared/api/services/franchises-anime/random-franchises/types";
+import { FranchisesResponse } from "shared/api/services/franchises-anime/types";
+import { FranchisesPageHeader } from "../FranchisesPageHeader/FranchisesPageHeader";
 
 interface FranchisesPageProps {
     className?: string;
@@ -17,16 +18,17 @@ export const FranchisesPage = observer(({ className }: FranchisesPageProps) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await franchisesStoreAnime.getFranchisesAnimeAction();
+            await franchisesStoreAnime.getAllFranchisesAnimeAction();
         };
         fetchData();
     }, [franchisesStoreAnime]);
 
     return (
         <Page className={classNames(s.FranchisesPage, {}, [className])}>
+            <FranchisesPageHeader />
             <FranchisesList 
-                franchises={franchisesStoreAnime.franchisesData?.value as RandomFranchisesResponse}
-                isLoading={franchisesStoreAnime.franchisesData?.state === "pending"}
+                franchises={franchisesStoreAnime.franchisesDataAll?.value as FranchisesResponse}
+                isLoading={franchisesStoreAnime.franchisesDataAll?.state === "pending"}
             />
         </Page>
     );
