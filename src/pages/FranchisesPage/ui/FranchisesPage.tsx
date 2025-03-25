@@ -5,6 +5,7 @@ import { Page } from "widgets/Page/Page";
 import { FranchisesList } from "entities/Franchise";
 import { useStore } from "app/providers/StoreProvider";
 import { useEffect } from "react";
+import { RandomFranchisesResponse } from "shared/api/services/franchises-anime/random-franchises/types";
 
 interface FranchisesPageProps {
     className?: string;
@@ -24,7 +25,7 @@ export const FranchisesPage = observer(({ className }: FranchisesPageProps) => {
     return (
         <Page className={classNames(s.FranchisesPage, {}, [className])}>
             <FranchisesList 
-                franchises={franchisesStoreAnime.franchisesData?.value || []}
+                franchises={franchisesStoreAnime.franchisesData?.value as RandomFranchisesResponse}
                 isLoading={franchisesStoreAnime.franchisesData?.state === "pending"}
             />
         </Page>

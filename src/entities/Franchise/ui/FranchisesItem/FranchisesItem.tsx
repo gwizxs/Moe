@@ -9,7 +9,7 @@ import { RandomFranchisesResponse } from "shared/api/services/franchises-anime/r
 
 interface FranchisesItemProps {
     className?: string;
-    franchise: RandomFranchisesResponse[0];
+    franchise?: RandomFranchisesResponse[0];
 }
 
 const { Text } = Typography;
@@ -22,11 +22,11 @@ export const FranchisesItem = observer((props: FranchisesItemProps) => {
 
     const { t } = useTranslation()
 
-    const duration = franchise.total_duration?.replace(/\d+/g, (match: string) => t(match));
+    const duration = franchise?.total_duration?.replace(/\d+/g, (match: string) => t(match));
 
     return (
         <Link 
-            to={`/${AppRoutes.ANIME_DETAILS}/${franchise.id}`}
+            to={`/${AppRoutes.ANIME_DETAILS}/${franchise?.id}`}
             className={classNames(s.FranchisesItem, {}, [className])}
         >
             <Card
@@ -35,8 +35,8 @@ export const FranchisesItem = observer((props: FranchisesItemProps) => {
                     <div className={s.imageWrapper}>
                         <img 
                             className={s.image} 
-                            src={`${import.meta.env.VITE_IMG_URL}${franchise.image.optimized.preview}`} 
-                            alt={franchise.name}
+                            src={`${import.meta.env.VITE_IMG_URL}${franchise?.image.optimized.preview}`} 
+                            alt={franchise?.name}
                             loading="lazy"
                         />
                     </div>
@@ -45,24 +45,24 @@ export const FranchisesItem = observer((props: FranchisesItemProps) => {
                 <div className={s.content}>
                     <div>
                         <Text  className={s.title}>
-                            {franchise.name}
+                            {franchise?.name}
                         </Text>
-                        {franchise.name_english && (
+                        {franchise?.name_english && (
                             <Text className={s.subtitle}>
-                                {franchise.name_english}
+                                {franchise?.name_english}
                             </Text>
                         )}
                     </div>
                     <Space direction="vertical" size={4} className={s.info}>
                         <div className={s.years}>
-                            {franchise.first_year} — {franchise.last_year}
+                            {franchise?.first_year} — {franchise?.last_year}
                         </div>
                         <Space className={s.stats} size={8}>
-                            <Text>{franchise.total_releases} {t('сезона')}</Text>
+                            <Text>{franchise?.total_releases} {t('сезона')}</Text>
                             <Text>•</Text>
-                            <Text>{franchise.total_episodes} {t('эпизодов')}</Text>
+                            <Text>{franchise?.total_episodes} {t('эпизодов')}</Text>
                         </Space>
-                        {franchise.total_duration && (
+                        {franchise?.total_duration && (
                             <Text className={s.duration}>{duration}</Text>
                         )}
                     </Space>

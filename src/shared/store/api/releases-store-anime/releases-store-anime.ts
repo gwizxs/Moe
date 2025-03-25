@@ -10,6 +10,7 @@ export class ReleasesStoreAnime {
     }
 
     releasesData?: IPromiseBasedObservable<AxiosResponse<Anime[]>>
+    releasesDataLimit?: IPromiseBasedObservable<AxiosResponse<Anime[]>>
 
     getReleasesAnimeAction = async () => {
         try {
@@ -27,11 +28,11 @@ export class ReleasesStoreAnime {
     getReleasesAnimeLimitAction = async () => {
         try {
             console.log("getReleasesAnimeLimitAction");
-            this.releasesData =
+            this.releasesDataLimit =
                 fromPromise<AxiosResponse<Anime[]>>(
                     getReleasesAnimeLimit()
                 );
-            console.log(this.releasesData, 'releasesData limit');
+            console.log(this.releasesDataLimit, 'releasesData limit');
         } catch (error) {
             console.log(error);
         }

@@ -7,5 +7,5 @@ export const getReleasesAnime = async () => (
 )).data
 
 export const getReleasesAnimeLimit = async () => (
-    await baseInstanceV1.get(API_URL.releases_anime_limit())
-).data
+    await baseInstanceV1.get(API_URL.releases_anime_limit()
+)).data
