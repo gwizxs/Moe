@@ -4,7 +4,7 @@ import { AxiosResponse } from "axios";
 import { ReleaseDetailsAnime } from "../releases-anime-details/types";
 
 
-//  ============= FETCH ANIME RELEASES =============
+//  ============= FETCH ANIME PLAYER =============
 
 export const getReleasesAnimePlayer = async (id: number): Promise<AxiosResponse<ReleaseDetailsAnime>> => {
     try {

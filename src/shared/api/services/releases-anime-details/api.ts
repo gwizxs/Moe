@@ -1,7 +1,7 @@
 import { API_URL } from "shared/api/api_url";
 import { baseInstanceV1 } from "shared/api/base";
 
-//  ============= FETCH ANIME RELEASES =============
+//  ============= FETCH ANIME RELEASES DETAILS =============
 
 export const getReleasesDetailsAnime = async (id: number) => {
     try {

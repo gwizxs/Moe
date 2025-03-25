@@ -1,17 +1,32 @@
 import { observer } from "mobx-react-lite";
 import classNames from "shared/library/classNames/classNames";
-import s from "./FranchisesPage.module.scss";
+import s from './Franchises.module.scss'
 import { Page } from "widgets/Page/Page";
+import { FranchisesList } from "entities/Franchise";
+import { useStore } from "app/providers/StoreProvider";
+import { useEffect } from "react";
 
 interface FranchisesPageProps {
     className?: string;
 }
 
-    export const FranchisesPage = observer(({ className }: FranchisesPageProps) => {
+export const FranchisesPage = observer(({ className }: FranchisesPageProps) => {
+
+    const { franchisesStoreAnime } = useStore()
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await franchisesStoreAnime.getFranchisesAnimeAction();
+        };
+        fetchData();
+    }, [franchisesStoreAnime]);
 
     return (
         <Page className={classNames(s.FranchisesPage, {}, [className])}>
-            <div>fjfj</div>
+            <FranchisesList 
+                franchises={franchisesStoreAnime.franchisesData?.value || []}
+                isLoading={franchisesStoreAnime.franchisesData?.state === "pending"}
+            />
         </Page>
     );
 });
