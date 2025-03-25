@@ -6,3 +6,6 @@ export const getReleasesAnime = async () => (
     await baseInstanceV1.get(API_URL.releases_anime()
 )).data
 
+export const getReleasesAnimeLimit = async () => (
+    await baseInstanceV1.get(API_URL.releases_anime_limit())
+).data

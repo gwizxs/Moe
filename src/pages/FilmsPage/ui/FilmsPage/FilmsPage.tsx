@@ -6,13 +6,17 @@ import { useCallback, useEffect } from "react";
 import { Page } from "widgets/Page/Page";
 import { useStore } from "app/providers/StoreProvider";
 import { ArticleList, ArticleView } from "entities/Article";
-
+import { Typography } from "antd";
+import { useTranslation } from "react-i18next";
 interface FilmsPageProps {
     className?: string;
 }
 
+const { Text } = Typography;
+
 export const FilmsPage = observer(({ className }: FilmsPageProps) => {
     const { articlesViewStore, releasesStoreAnime } = useStore();
+    const { t } = useTranslation();
 
     const onChangeView = useCallback(
         (newView: ArticleView) => {
@@ -28,7 +32,7 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
     }, [releasesStoreAnime]);
     
     if (releasesStoreAnime.releasesData?.state === "rejected") {
-        return <div>Ошибка загрузки данных</div>;
+        return <Text>{t("Ошибка загрузки данных")}</Text>;
     }
 
     return (

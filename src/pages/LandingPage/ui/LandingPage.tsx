@@ -1,12 +1,22 @@
 import { Page } from "widgets/Page/Page"
 import { Carousel } from "widgets/Carousel/ui/Carousel"
+import classNames from "shared/library/classNames/classNames"
+import s from './LandingPage.module.scss'
  
+interface LandingPageProps {
+    className?: string
+}
+export const LandingPage = (props: LandingPageProps) => {
+    const {
+        className
+    } = props
 
-export const LandingPage = () => {
     return (
-        <Page>
+        <Page className={classNames(s.LandingPage, {}, [className])}>
             <Carousel />
-            <br />
+            <div>
+                
+            </div>
         </Page>
     )
 }

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
-import { getReleasesAnime } from "shared/api/services/releases-anime-catalog/api";
+import { getReleasesAnime, getReleasesAnimeLimit } from "shared/api/services/releases-anime-catalog/api";
 import { AxiosResponse } from "axios";
 import { Anime } from "shared/api/services/releases-anime-catalog/types";
 
@@ -23,5 +23,19 @@ export class ReleasesStoreAnime {
             console.log(error);
         }
     }
+
+    getReleasesAnimeLimitAction = async () => {
+        try {
+            console.log("getReleasesAnimeLimitAction");
+            this.releasesData =
+                fromPromise<AxiosResponse<Anime[]>>(
+                    getReleasesAnimeLimit()
+                );
+            console.log(this.releasesData, 'releasesData limit');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
 }
 
