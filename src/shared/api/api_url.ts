@@ -2,7 +2,8 @@ export const API_URL = {
     releases_anime: () => 'anime/catalog/releases',
     releases_anime_details: (id: number) => `anime/releases/${id}`,
     franchises_random: () => `anime/franchises/random?limit=4`,
-    franchises_all: () => `anime/franchises?limit=12`,
+    franchises_all: () => `anime/franchises`,
+    franchises_details: (alias: string) => `anime/franchises/${alias}`,
 
 
     // ================================ FOR LANDING PAGE ================================

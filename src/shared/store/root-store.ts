@@ -5,6 +5,7 @@ import { ReleasesStoreDetailsAnime } from "./api/releases-store-anime/releases-s
 import { ReleasesStoreAnimeInfo } from "./api/releases-store-anime/releases-store-anime-info";
 import { CatalogAnimeStoreReleases } from "./api/catalog-anime-releases/catalog-anime-store-releases";
 import { FranchisesStoreAnime } from "./api/franchises-anime/franchises-store-anime";
+import { FranchisesStoreAnimeDetails } from "./api/franchises-anime/franchises-store-details";
 
 export class RootStore {
     articlesViewStore = new ArticlesViewStore();
@@ -14,4 +15,5 @@ export class RootStore {
     releasesStoreAnimeInfo = new ReleasesStoreAnimeInfo();
     catalogAnimeStoreReleases = new CatalogAnimeStoreReleases();
     franchisesStoreAnime = new FranchisesStoreAnime();
+    franchisesStoreAnimeDetails = new FranchisesStoreAnimeDetails();
 }

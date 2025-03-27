@@ -26,7 +26,7 @@ export const FranchisesItem = observer((props: FranchisesItemProps) => {
 
     return (
         <Link 
-            to={`/${AppRoutes.ANIME_DETAILS}/${franchise?.id}`}
+            to={`/${AppRoutes.FRANCHISES_DETAILS}/${franchise?.id}`}
             className={classNames(s.FranchisesItem, {}, [className])}
         >
             <Card
