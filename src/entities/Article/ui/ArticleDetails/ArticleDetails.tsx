@@ -6,6 +6,7 @@ import { ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { AppRoutes } from "shared/config/routeConfig/routeConfig"
+import loaderFrame from "shared/assets/bg/loaderFrame.webp";
 
 interface ArticleListItemProps {
     className?: string
@@ -51,7 +52,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                         style={{
                             backgroundImage: episode.preview?.optimized?.src
                                 ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})`
-                                : "none",
+                                : `url(${loaderFrame})`,
                         }}
                     >
                         <div className={s.overlay}></div>

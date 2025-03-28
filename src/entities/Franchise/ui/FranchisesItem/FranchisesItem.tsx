@@ -6,6 +6,7 @@ import { Card, Space, Typography } from "antd"
 import { Link } from "react-router-dom"
 import { AppRoutes } from "shared/config/routeConfig/routeConfig"
 import { FranchisesResponse } from "shared/api/services/franchises-anime/types"
+import loaderFrame from "shared/assets/bg/loaderFrame.webp";
 
 interface FranchisesItemProps {
     className?: string;
@@ -35,7 +36,7 @@ export const FranchisesItem = observer((props: FranchisesItemProps) => {
                     <div className={s.imageWrapper}>
                         <img 
                             className={s.image} 
-                            src={`${import.meta.env.VITE_IMG_URL}${franchise?.image.optimized.preview}`} 
+                            src={franchise?.image ? `${import.meta.env.VITE_IMG_URL}${franchise?.image.optimized.preview}` : loaderFrame} 
                             alt={franchise?.name}
                             loading="lazy"
                         />

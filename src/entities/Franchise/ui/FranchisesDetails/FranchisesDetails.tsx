@@ -6,6 +6,7 @@ import { AppRoutes } from "shared/config/routeConfig/routeConfig";
 import { FranchisesDetailsResponse } from "shared/api/services/franchises-anime/franchises-details/types";
 import { Typography, Skeleton, Card } from "antd";
 import { observer } from "mobx-react-lite";
+import loaderFrame from "shared/assets/bg/loaderFrame.webp";
 
 interface FranchisesDetailsProps {
     className?: string;
@@ -56,7 +57,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
         <Card className={s.franchiseInfo}>
             <img 
                 className={s.poster} 
-                src={`${import.meta.env.VITE_IMG_URL}${franchise.image?.optimized?.preview}`} 
+                src={franchise.image ? `${import.meta.env.VITE_IMG_URL}${franchise.image?.optimized?.preview}` : loaderFrame} 
                 alt={franchise?.name} 
             />
             <div className={s.mainInfo}>
@@ -82,7 +83,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
             {franchise?.franchise_releases?.map((item, index) => (
                 <Link
                     key={item.id}
-                    to={`/${AppRoutes.ANIME_DETAILS}?id=${item.release_id}`}
+                    to={`/${AppRoutes.ANIME_DETAILS}/franchises?id=${item.release_id}`}
                     className={s.releaseItem}
                 >
                     <div className={s.releaseNumber}>#{index + 1}</div>
@@ -90,7 +91,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
                         {item.release.poster?.optimized?.src && (
                             <img 
                                 className={s.releasePoster} 
-                                src={`${import.meta.env.VITE_IMG_URL}${item.release.poster.optimized.src}`} 
+                                src={item.release.poster?.optimized?.src ? `${import.meta.env.VITE_IMG_URL}${item.release.poster.optimized.src}` : loaderFrame} 
                                 alt={item.release.name.main} 
                             />
                         )}

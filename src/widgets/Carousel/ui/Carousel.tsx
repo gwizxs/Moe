@@ -8,6 +8,7 @@ import { PlayCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from "react-i18next";
 import { CarouselSkeleton } from "./CarouselSkeleton";
 import { Link } from "react-router-dom";
+import loaderFrame from "shared/assets/bg/loaderFrame.webp";
 
 const { Title, Text } = Typography;
 
@@ -31,7 +32,7 @@ export const Carousel = observer(() => {
             <div className={s.bannerOverlay} />
             <div
                 className={s.bannerImage}
-                style={{ backgroundImage: `url(${import.meta.env.VITE_IMG_URL}${anime.poster.optimized.src})` }}
+                style={{ backgroundImage: anime.poster?.optimized?.src ? `url(${import.meta.env.VITE_IMG_URL}${anime.poster.optimized.src})` : `url(${loaderFrame})` }}
             />
             <div className={s.bannerContent}>
                 <Title level={1} className={s.bannerTitle}>{anime.name.main}</Title>
