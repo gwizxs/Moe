@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import { Episode } from "shared/api/services/releases-anime-details/types";
 import { PageLoader } from "widgets/PageLoader/ui/PageLoader";
 import { Typography } from "antd";
+import { useTranslation } from "react-i18next";
 interface AnimeDetailsVideoPageProps {
   className?: string;
 }
@@ -20,6 +21,7 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
   const [searchParams] = useSearchParams();
   const [episode, setEpisode] = useState<Episode | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   const id = searchParams.get("id");
   const sortOrderParam = searchParams.get("sort_order");
@@ -64,20 +66,22 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
     <Page className={classNames(s.AnimeDetailsVideoPage, {}, [className])}>
       {isLoading && <PageLoader />}
       {releasesStoreDetailsAnime.releasesData?.state === "rejected" && (
-        <Title className={s.error} level={3}>Ошибка загрузки: {releasesStoreDetailsAnime.error || 'Неизвестная ошибка'}</Title>
+        <Title className={s.error} level={3}>{t('Ошибка загрузки')}: {releasesStoreDetailsAnime.error || t('Неизвестная ошибка')}</Title>
       )}
-      {!isLoading && episode && episode.hls_1080 ? (
+      {!isLoading && episode? (
         <Player
           url={episode.hls_1080}
+          url720={episode.hls_720}
+          url480={episode.hls_480}
           opening={episode.opening}
           ending={episode.ending}
           preview={getPreviewUrl()}
         />
       ) : !isLoading && (
         <div className={s.error}>
-          <Title level={3}>Эпизод не найден или видео недоступно</Title>
+          <Title level={3}>{t('Эпизод не найден или видео недоступно')}</Title>
           {releasesStoreDetailsAnime.episodes.length > 0 && (
-            <Title level={5}>Доступно эпизодов: {releasesStoreDetailsAnime.episodes.length}, текущий: {sortOrder}</Title>
+            <Title level={5}>{t('Доступно эпизодов')}: {releasesStoreDetailsAnime.episodes.length}, {t('текущий')}: {sortOrder}</Title>
           )}
         </div>
       )}
