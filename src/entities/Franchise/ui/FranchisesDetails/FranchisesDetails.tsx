@@ -57,21 +57,21 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
             <img 
                 className={s.poster} 
                 src={`${import.meta.env.VITE_IMG_URL}${franchise.image?.optimized?.preview}`} 
-                alt={franchise.name} 
+                alt={franchise?.name} 
             />
             <div className={s.mainInfo}>
-                <Title level={3} className={s.title}>{franchise.name}</Title>
-                {franchise.name_english && (
-                    <Text className={s.subtitle}>{franchise.name_english}</Text>
+                <Title level={3} className={s.title}>{franchise?.name}</Title>
+                {franchise?.name_english && (
+                    <Text className={s.subtitle}>{franchise?.name_english}</Text>
                 )}
                 <div className={s.stats}>
-                    <Text>{franchise.first_year} — {franchise.last_year}</Text>
+                    <Text>{franchise?.first_year} — {franchise?.last_year}</Text>
                     <div className={s.episodes}>
-                        <Text className={s.episodesCount}>{franchise.total_releases} {t('сезона')}</Text>
+                        <Text className={s.episodesCount}>{franchise?.total_releases} {t('сезона')}</Text>
                         <Text className={s.dot}>•</Text>
-                        <Text className={s.episodesCount}>{franchise.total_episodes} {t('эпизодов')}</Text>
+                        <Text className={s.episodesCount}>{franchise?.total_episodes} {t('эпизодов')}</Text>
                     </div>
-                    <Text className={s.duration}>{franchise.total_duration}</Text>
+                    <Text className={s.duration}>{franchise?.total_duration}</Text>
                 </div>
             </div>
         </Card>
@@ -79,7 +79,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
 
     const releasesList = franchise.franchise_releases?.length > 0 ? (
         <Card className={s.releasesList}>
-            {franchise.franchise_releases.map((item, index) => (
+            {franchise?.franchise_releases?.map((item, index) => (
                 <Link
                     key={item.id}
                     to={`/${AppRoutes.ANIME_DETAILS}?id=${item.release_id}`}
@@ -130,7 +130,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
     return (
         <div className={classNames(s.FranchisesDetails, {}, [className])}>
             {franchiseInfo}
-            <Title level={4} className={s.sectionTitle}>{t('Содержание франшизы')}</Title>
+            <Title level={2} className={s.sectionTitle}>{t('Содержание франшизы')}</Title>
             {releasesList}
         </div>
     );

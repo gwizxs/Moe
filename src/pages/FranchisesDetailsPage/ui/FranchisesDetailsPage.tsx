@@ -4,35 +4,36 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Page } from "widgets/Page/Page";
 import { FranchisesDetailsResponse } from "shared/api/services/franchises-anime/franchises-details/types";
+import { observer } from "mobx-react-lite";
 
-export const FranchisesDetailsPage = () => {
+export const FranchisesDetailsPage = observer(() => {
     const { franchisesStoreAnimeDetails } = useStore();
     const { alias } = useParams();
 
     useEffect(() => {
-        const fetchData = () => {
+        const fetchData = async () => {
             if(alias) {
-                franchisesStoreAnimeDetails.getFranchisesAnimeDetailsAction(alias);
+                try {
+                    await franchisesStoreAnimeDetails.getFranchisesAnimeDetailsAction(alias);
+                } catch (error) {
+                    console.error("Ошибка загрузки данных франшизы:", error);
+                }
             }
         };
         fetchData();
     }, [franchisesStoreAnimeDetails, alias]);
 
-    // Получаем данные напрямую из value
-    const franchiseData = franchisesStoreAnimeDetails.franchisesDetailsData?.value;
-    const isLoading = franchisesStoreAnimeDetails.franchisesDetailsData?.state === 'pending';
-
-    console.log('Состояние:', franchisesStoreAnimeDetails.franchisesDetailsData?.state);
-    console.log('Данные франшизы:', franchiseData);
+    const franchiseData = franchisesStoreAnimeDetails.franchisesDetailsData?.value as FranchisesDetailsResponse | undefined;
+    const isPending = franchisesStoreAnimeDetails.franchisesDetailsData?.state === 'pending';
 
     return (
         <Page>
             <FranchisesDetails
-                franchise={franchiseData as FranchisesDetailsResponse}
-                isLoading={isLoading}
+                franchise={franchiseData}
+                isLoading={isPending} 
             />
-        </Page> 
-    )
-}
+        </Page>
+    );
+});
 
 export default FranchisesDetailsPage;

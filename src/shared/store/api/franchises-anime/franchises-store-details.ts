@@ -10,19 +10,18 @@ export class FranchisesStoreAnimeDetails {
         makeAutoObservable(this);
     }
 
-    franchisesDetailsData?: IPromiseBasedObservable<AxiosResponse<FranchisesDetailsResponse[]>>
+    franchisesDetailsData?: IPromiseBasedObservable<AxiosResponse<FranchisesDetailsResponse>>
 
     getFranchisesAnimeDetailsAction = async (alias: string) => {
         try {
-            console.log("getFranchisesAnimeAction");
-            this.franchisesDetailsData =
-                fromPromise<AxiosResponse<FranchisesDetailsResponse[]>>(
-                    getFranchisesDetails(alias)
-                );
+            console.log("getFranchisesAnimeDetailsAction");
+            this.franchisesDetailsData = fromPromise<AxiosResponse<FranchisesDetailsResponse>>(
+                getFranchisesDetails(alias)
+            );
             console.log(this.franchisesDetailsData, 'franchisesDetailsData');
         } catch (error) {
             console.log(error);
-        }   
+        }
     }
 }
 
