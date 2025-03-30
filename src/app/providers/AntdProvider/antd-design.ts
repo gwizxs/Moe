@@ -13,7 +13,7 @@ export const lightThemeConfig: ThemeConfig = {
    components: {
       Button: {
          controlOutline: 'none',
-         defaultBorderColor: 'transparent', 
+         defaultBorderColor: 'transparent',
       },
       Input: {
          paddingInline: 15,
@@ -27,12 +27,15 @@ export const lightThemeConfig: ThemeConfig = {
       },
       Carousel: {
          marginXXS: 8
-       }
+      },
+      Modal: {
+         colorBgMask: 'rgba(231, 244, 255, 0.863);',
+      }
    },
- };
+};
 
- 
- export const darkThemeConfig: ThemeConfig = {
+
+export const darkThemeConfig: ThemeConfig = {
    token: {
       colorText: '#fff',
       colorBgBase: '#141414',
@@ -45,7 +48,7 @@ export const lightThemeConfig: ThemeConfig = {
    },
    components: {
       Button: {
-         controlOutline: 'none', 
+         controlOutline: 'none',
          defaultBorderColor: 'transparent',
          colorPrimary: '#bb3637',
       },
@@ -59,12 +62,15 @@ export const lightThemeConfig: ThemeConfig = {
          controlHeight: 40
       },
       Card: {
-        colorBgContainer: '#212124',
-        bodyPadding: 0
+         colorBgContainer: '#212124',
+         bodyPadding: 0
       },
       Carousel: {
          marginXXS: 8
-       }
+      },
+      Modal: {
+         colorBgMask: '#020200ee',
+      }
    },
- };
+};
 

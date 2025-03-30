@@ -4,18 +4,18 @@ import { AxiosResponse } from "axios";
 import { getSearchAnime } from "shared/api/services/search-anime/api";
 import { SearchAnimeResponse } from "shared/api/services/search-anime/types";
 
-export class ReleasesStoreAnime {
+export class SearchAnimeStore {
     constructor() {
         makeAutoObservable(this);
     }
 
-    searchData?: IPromiseBasedObservable<AxiosResponse<SearchAnimeResponse[]>>
+    searchData?: IPromiseBasedObservable<AxiosResponse<SearchAnimeResponse>>
 
     getSearchAnimeAction = async (query: string) => {
         try {
             console.log("getSearchAnimeAction");
             this.searchData =
-                fromPromise<AxiosResponse<SearchAnimeResponse[]>>(
+                fromPromise<AxiosResponse<SearchAnimeResponse>>(
                     getSearchAnime(query)
                 );
             console.log(this.searchData, 'searchData');

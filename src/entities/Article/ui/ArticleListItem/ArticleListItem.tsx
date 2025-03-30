@@ -11,6 +11,7 @@ interface ArticleListItemProps {
     className?: string;
     article: Anime;
     view: ArticleView;
+    genres: boolean;
 }
 
 const { Paragraph, Title } = Typography;
@@ -19,7 +20,8 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
     const {
         className,
         article,
-        view
+        view,
+        genres
     } = props
 
     const { t } = useTranslation('Projects')
@@ -27,7 +29,7 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
     const ArticleTags = () => {
         return (
             <div className={s.tags}>
-                {article.genres.map((genre) => (
+                {genres && article.genres.map((genre) => (
                     <Tag key={genre.id} className={s.tag}>
                         {genre.name}
                     </Tag>
@@ -55,7 +57,7 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
                                 </Title>
                                 <div className={s.tagsContainer}>
                                     <Tag color="red" className={s.ageRating}>{article.age_rating.label}</Tag>
-                                    {article.genres.map((tag) => (
+                                    {genres && article.genres.map((tag) => (
                                         <Tag key={tag.id} className={s.tag}>{tag.name}</Tag>
                                     ))}
                                     <Tag color="gold">{article.year}</Tag>

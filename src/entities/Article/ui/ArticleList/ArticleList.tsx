@@ -11,6 +11,7 @@ interface ArticleListProps {
     articles: Anime[];
     view?: ArticleView;
     isLoading: boolean
+    genres: boolean
 }
 
 const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.SMALL ? 14 : 5)
@@ -24,7 +25,8 @@ export const ArticleList = observer((props: ArticleListProps) => {
         className,
         articles,
         view = ArticleView.SMALL,
-        isLoading
+        isLoading,
+        genres
     } = props
 
     const renderArticle = (article: Anime) => {
@@ -33,6 +35,7 @@ export const ArticleList = observer((props: ArticleListProps) => {
                 article={article}
                 view={view}
                 key={article.id}
+                genres={genres}
             />
         )
     }
