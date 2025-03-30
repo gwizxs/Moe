@@ -36,7 +36,7 @@ export const Player = (props: PlayerProps) => {
     
     const playerRef = useRef<ReactPlayer | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
-    const [quality, setQuality] = useState<string>('1080');
+    const [quality, setQuality] = useState<string>('480');
     const [currentUrl, setCurrentUrl] = useState<string>(url);
     const { t } = useTranslation();
 
@@ -44,7 +44,7 @@ export const Player = (props: PlayerProps) => {
 
     useEffect(() => {
         setCurrentUrl(url);
-        setQuality('1080');
+        setQuality('480');
     }, [url]);
 
     useEffect(() => {

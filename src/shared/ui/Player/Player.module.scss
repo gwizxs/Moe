@@ -3,7 +3,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.2rem;
 
     width: 100vw;
     margin-top: 0.5rem;
@@ -15,7 +14,7 @@
         width: 100vw;
         height: 100vh;
         object-fit: contain;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
     }
 
     .controls {
@@ -27,15 +26,19 @@
 }
 
 @media (max-width: 768px) {
-
     .Player {
-        width: 100vw;
+        width: 95vw;
         height: 40vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
+
     video {
         width: 100vw;
         height: 100vh;
-        object-fit:cover;
+        object-fit: cover;
     }
 }
 
@@ -58,7 +61,7 @@
     
     .qualitySelect {
         min-width: 80px;
-        background: rgba(0, 0, 0, 0.6);
+        background: var(--bg-color);
         border-radius: 0.25rem;
         
         :global {
