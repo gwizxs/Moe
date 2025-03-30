@@ -1,3 +1,39 @@
 .FranchisesList {
     margin-top: 2rem;
+    width: 100%;
+}
+
+.listWrapper {
+    width: 100%;
+    padding: 0 1rem;
+    height: auto;
+}
+
+.card {
+    transition: transform 0.3s ease;
+    margin: 0 0.5rem 0.5rem;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+.emptyState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.normalList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
