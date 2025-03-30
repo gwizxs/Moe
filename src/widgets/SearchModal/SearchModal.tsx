@@ -1,4 +1,4 @@
-import { Card, Flex, Input, Modal } from "antd"
+import { Flex, Input, Modal } from "antd"
 import { useEffect, useState, useCallback } from "react"
 import { useTranslation } from "react-i18next";
 import { Search } from "lucide-react";
@@ -8,8 +8,6 @@ import { Portal } from "shared/ui/Portal/Portal";
 import { useStore } from "app/providers/StoreProvider";
 import { ArticleList, ArticleView } from "entities/Article";
 import { observer } from "mobx-react-lite";
-import { FranchisesList } from "entities/Franchise";
-import { SearchAnimeResponse } from "shared/api/services/search-anime/types";
 import { Anime } from "shared/api/services/releases-anime-catalog/types";
 interface SearchModalProps {
     isOpen: boolean;
