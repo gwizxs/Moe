@@ -73,7 +73,6 @@ export const Player = (props: PlayerProps) => {
         setQuality(value);
     };
 
-    // Формируем опции для селекта исходя из доступных URL
     const qualityOptions = [
         { value: '1080', label: '1080p', disabled: !url },
         { value: '720', label: '720p', disabled: !url720 },

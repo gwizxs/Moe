@@ -6,7 +6,7 @@ import { RootStoreContext } from "./providers/StoreProvider"
 import { RootStore } from "shared/store/root-store"
 import { LayoutWrapper } from "./providers/router/ui/LayoutWrapper"
 
-function App() {
+const App = () => {
   const { theme } = useTheme()
 
   return (

@@ -5,16 +5,18 @@ import Title from 'antd/es/typography/Title';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { NavbarItems } from 'widgets/NavbarNotReg/ui/NavbarItems/NavbarItems';
-import { menu } from 'shared/constants/menu'; 
+import { menu } from 'shared/constants/menu';
 import { Search } from 'lucide-react';
-
+import { useState } from 'react';
+import { SearchModal } from 'widgets/SearchModal/SearchModal';
 
 interface NavbarProps {
   className?: string;
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
-
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  
   return (
     <nav className={classNames(s.navbar, {}, [className])}>
       <Flex justify="space-between" align="center" className={s.row}>
@@ -23,13 +25,18 @@ export const Navbar = ({ className }: NavbarProps) => {
         </Title>
         <NavbarItems items={menu} isCollapsed={false} className={s.sidebar} />
         <Flex gap="small" align="center">
-          <Button type="text">
-            <Search className={s.bell} size={24} />
+          <Button type="text" onClick={() => setIsSearchModalOpen(true)}>
+            <Search size={24} />
           </Button>
           <ThemeSwitcher className={s.theme} />
           <LangSwitcher short className={s.lang} />
         </Flex>
       </Flex>
+
+      <SearchModal 
+        isOpen={isSearchModalOpen} 
+        onClose={() => setIsSearchModalOpen(false)} 
+      />
     </nav>
   );
 };
