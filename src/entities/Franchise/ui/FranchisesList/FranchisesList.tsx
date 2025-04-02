@@ -7,6 +7,7 @@ import { Flex } from "antd";
 import { FranchisesResponse } from "shared/api/services/franchises-anime/types";
 import VirtualList from "rc-virtual-list";
 import { useTranslation } from "react-i18next";
+import { isMobile, isDesktop } from 'react-device-detect';
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 
 interface FranchisesListProps {
@@ -31,11 +32,10 @@ export const FranchisesList = observer((props: FranchisesListProps) => {
         isLandingPage = false,
         onScrollEnd
     } = props;
-
     const { t } = useTranslation();
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerHeight, setContainerHeight] = useState(800);
-    const [itemsPerRow, setItemsPerRow] = useState(3);
+    const [itemsPerRow, setItemsPerRow] = useState(isMobile ? 1 : isDesktop ? 3 : 2); 
 
     const CARD_WIDTH = 560;
     const ITEM_HEIGHT = 320;
@@ -50,7 +50,7 @@ export const FranchisesList = observer((props: FranchisesListProps) => {
             const containerWidth = containerRef.current.clientWidth;
             const gap = 16;
             const calculatedItemsPerRow = Math.floor((containerWidth + gap) / (CARD_WIDTH + gap));
-            setItemsPerRow(Math.max(2, calculatedItemsPerRow));
+            setItemsPerRow(isMobile ? 1 : Math.min(3, Math.max(2, calculatedItemsPerRow)));
         }
     };
 

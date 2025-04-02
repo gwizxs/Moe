@@ -2,11 +2,15 @@ import { observer } from "mobx-react-lite"
 import classNames from "shared/library/classNames/classNames"
 import s from './ArticleDetails.module.scss'
 import { Button, Card, Col, Descriptions, Row, Tag, Typography, Image } from "antd"
-import { ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/types"
+import { Episode, ReleaseDetailsAnime } from "shared/api/services/releases-anime-details/types"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { AppRoutes } from "shared/config/routeConfig/routeConfig"
 import loaderFrame from "shared/assets/bg/loaderFrame.webp";
+import VirtualList from "rc-virtual-list";
+import { useEffect, useRef, useMemo, useState, useCallback } from "react"
+import debounce from "lodash.debounce"
+import { useUpdateDimensions } from "shared/library/hooks/useUpdateDimensions"
 
 interface ArticleListItemProps {
     className?: string
@@ -38,37 +42,104 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
     }
 
     const CardInfoSeries = () => {
+        const containerRef = useRef<HTMLDivElement>(null);
+        const [containerHeight, setContainerHeight] = useState(800);
+        const [itemsPerRow, setItemsPerRow] = useState(2);
+        
+        const ITEM_HEIGHT = 320;
+
+        const updateDimensions = useUpdateDimensions(
+            containerRef,
+            setContainerHeight,
+            setItemsPerRow,
+            {
+                minHeight: 600,
+                bottomOffset: 40,
+                mobileItemsPerRow: 2,
+                tabletItemsPerRow: 4,
+                breakpoints: { xl: 1920, lg: 1440, md: 1200 },
+                itemsPerBreakpoint: { xl: 6, lg: 5, md: 4, sm: 3 }
+            }
+        );
+
+        useEffect(() => {
+            updateDimensions();
+            
+            const handleResize = debounce(() => {
+                updateDimensions();
+            }, 800);
+            
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }, [updateDimensions]);
+
+        const rows = useMemo(() => {
+            if (!anime?.episodes?.length) return [];
+            
+            const result = [];
+            for (let i = 0; i < anime.episodes.length; i += itemsPerRow) {
+                const rowItems = anime.episodes.slice(i, i + itemsPerRow);
+                result.push(rowItems);
+            }
+            return result;
+        }, [anime?.episodes, itemsPerRow]);
+
+        const getRowKey = useCallback((row: Episode[]) => {
+            return row.map(item => item.id).join('-');
+        }, []);
+
+        if (!anime?.episodes?.length) {
+            return (
+                <div className={s.emptyState}>
+                    {t('Эпизоды не найдены')}
+                </div>
+            );
+        }
+        
         return (
-            <section className={s.gridContainer}>
-                {anime?.episodes?.map((episode) => (
-                    <Link
-                        to={{
-                            pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime.alias}`,
-                            search: `id=${anime.id}&sort_order=${episode.sort_order}`,
-                        }}
-                        target="_blank"
-                        key={episode.id}
-                        className={s.episodeCard}
-                        style={{
-                            backgroundImage: episode.preview?.optimized?.src
-                                ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})`
-                                : `url(${loaderFrame})`,
-                        }}
-                    >
-                        <div className={s.overlay}></div>
-                        <div className={s.content}>
-                            <Paragraph style={{ color: "var(--inverted-bg-color)" }} className={s.episodeTitle}>{episode.name}</Paragraph>
-                            <div className={s.bottomSection}>
-                                <Title level={4} style={{ color: "var(--inverted-bg-color)" }} className={s.episodeNumber}>
-                                    {episode.ordinal} {t("эпизод")}
-                                </Title>
-                                <Paragraph style={{ color: "var(--inverted-bg-color)" }} className={s.duration}>
-                                    {`${Math.floor(episode.duration / 60)}:${String(episode.duration % 60).padStart(2, "0")}`}
-                                </Paragraph>
-                            </div>
+            <section className={s.seriesContainer} ref={containerRef}>
+                <VirtualList
+                    data={rows}
+                    height={containerHeight}
+                    itemHeight={ITEM_HEIGHT}
+                    itemKey={getRowKey}
+                    className={s.virtualList}
+                    showScrollBar
+                >
+                    {(row: Episode[]) => (
+                        <div className={s.episodeRow}>
+                            {row.map((episode) => (
+                                <Link
+                                    to={{
+                                        pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime.alias}`,
+                                        search: `id=${anime.id}&sort_order=${episode.sort_order}`,
+                                    }}
+                                    target="_blank"
+                                    key={episode.id}
+                                    className={s.episodeCard}
+                                    style={{
+                                        backgroundImage: episode.preview?.optimized?.src
+                                            ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})`
+                                            : `url(${loaderFrame})`,
+                                    }}
+                                >
+                                    <div className={s.overlay}></div>
+                                    <div className={s.content}>
+                                        <Paragraph style={{ color: "var(--inverted-bg-color)" }} className={s.episodeTitle}>{episode.name}</Paragraph>
+                                        <div className={s.bottomSection}>
+                                            <Title level={4} style={{ color: "var(--inverted-bg-color)" }} className={s.episodeNumber}>
+                                                {episode.ordinal} {t("эпизод")}
+                                            </Title>
+                                            <Paragraph style={{ color: "var(--inverted-bg-color)" }} className={s.duration}>
+                                                {`${Math.floor(episode.duration / 60)}:${String(episode.duration % 60).padStart(2, "0")}`}
+                                            </Paragraph>
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
                         </div>
-                    </Link>
-                ))}
+                    )}
+                </VirtualList>
             </section>
         )
     }

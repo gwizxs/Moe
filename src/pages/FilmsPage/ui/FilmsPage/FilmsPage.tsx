@@ -30,7 +30,7 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
         };
         fetchData();
     }, [releasesStoreAnime]);
-    
+
     if (releasesStoreAnime.releasesData?.state === "rejected") {
         return <Text>{t("Ошибка загрузки данных")}</Text>;
     }
@@ -41,13 +41,10 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
                 <ArticleViewSwitcher view={articlesViewStore.view} onViewClick={onChangeView} />
             </div>
             <ArticleList
-                isLoading={
-                    releasesStoreAnime.releasesData?.state === "pending"
-                }
+                isLoading={releasesStoreAnime.releasesData?.state === "pending"}
                 view={articlesViewStore.view}
-                articles={
-                    releasesStoreAnime.releasesData?.value?.data || []
-                }
+                articles={releasesStoreAnime.releasesData?.value?.data || []}
+                genres={true}
             />
         </Page>
     );
