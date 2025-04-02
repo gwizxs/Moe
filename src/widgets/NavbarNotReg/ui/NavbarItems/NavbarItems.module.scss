@@ -32,7 +32,7 @@
       cursor: pointer;
   
       &:hover {
-        color: var(--primary-color);
+        color: var(--accent-color);
       }
     }
   
@@ -40,8 +40,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 24px; 
-      height: 24px; 
+      width: 28px; 
+      height: 28px; 
       margin-right: 8px; 
       transition: width 0.3s, height 0.3s;
   

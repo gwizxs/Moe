@@ -52,6 +52,7 @@ export const LandingPage = observer((props: LandingPageProps) => {
                     articles={
                         releasesStoreAnime.releasesDataLimit?.value?.data || []
                     }
+                    genres={true}
                 />
             </Flex>
             <Flex vertical gap={16}>

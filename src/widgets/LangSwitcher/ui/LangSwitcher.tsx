@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import classNames from 'shared/library/classNames/classNames';
 import { Button } from 'antd';
-
 interface LangSwitcherProps {
     short?: boolean;
     className?: string 
