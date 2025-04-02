@@ -78,7 +78,8 @@ export const SearchModal = observer((props: SearchModalProps) => {
                         articles={searchAnimeStore.searchData?.value as Anime[]}
                         isLoading={searchAnimeStore.searchData?.state === 'pending'}
                         className={s.articleList}
-                        view={ArticleView.BIG}
+                        view={ArticleView.SMALL}
+                        onItemClick={onClose}
                     />
                 </div>
             </Modal>

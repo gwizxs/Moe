@@ -12,6 +12,7 @@ interface ArticleListItemProps {
     article: Anime;
     view: ArticleView;
     genres: boolean;
+    onClick?: () => void;
 }
 
 const { Paragraph, Title } = Typography;
@@ -21,7 +22,8 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
         className,
         article,
         view,
-        genres
+        genres,
+        onClick
     } = props
 
     const { t } = useTranslation('Projects')
@@ -41,7 +43,7 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
     if (view === ArticleView.BIG) {
         return (
             <Card className={classNames(s.ArticleListItem, {}, [className, s.BIG])}>
-                <Link to={`/${AppRoutes.ANIME_DETAILS}/${article.alias}?id=${article.id}`}>
+                <Link to={`/${AppRoutes.ANIME_DETAILS}/${article.alias}?id=${article.id}`} onClick={onClick}>
                     <Row gutter={16} wrap={false}>
                         <Col flex="250px" className={s.col}>
                             <Image
@@ -96,7 +98,7 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
                                 {`${article.year} • ${article.season.description} • ${article.type.description} • ${article.age_rating.label}`}
                             </Paragraph>
                             <ArticleTags />
-                            <Link to={`/${AppRoutes.ANIME_DETAILS}/${article.alias}?id=${article.id}`}>
+                            <Link to={`/${AppRoutes.ANIME_DETAILS}/${article.alias}?id=${article.id}`} onClick={onClick}>
                                 <Button type="primary" >{t('Смотреть')}</Button>
                             </Link>
                         </div>

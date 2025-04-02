@@ -15,6 +15,7 @@ import { useUpdateDimensions } from "shared/library/hooks/useUpdateDimensions"
 interface ArticleListItemProps {
     className?: string
     anime: ReleaseDetailsAnime | null;
+    onEpisodeClick?: () => void;
 }
 
 const { Paragraph, Title } = Typography;
@@ -23,6 +24,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
     const {
         className,
         anime,
+        onEpisodeClick,
     } = props
     const { t } = useTranslation()
 
@@ -117,6 +119,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                                     target="_blank"
                                     key={episode.id}
                                     className={s.episodeCard}
+                                    onClick={onEpisodeClick}
                                     style={{
                                         backgroundImage: episode.preview?.optimized?.src
                                             ? `url(${import.meta.env.VITE_IMG_URL}${episode.preview.optimized.src})`
@@ -184,6 +187,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                                 search: `id=${anime?.id}&sort_order=1`,
                             }}
                             target="_blank"
+                            onClick={onEpisodeClick}
                         >
                             <Button
                                 type="primary"
