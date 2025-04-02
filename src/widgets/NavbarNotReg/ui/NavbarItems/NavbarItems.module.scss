@@ -10,26 +10,47 @@
   .menuItem {
     width: 100%;
     display: flex;
-    margin-right: 12px;
+    margin-right: 0.75rem;
     align-items: center;
-    padding: 8px;
-    border-radius: 10px;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
     color: #757575;
-    transition: background 0.3s, width 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   
     &.active {
-      background-color: #f3f3f3;
-      color: #222222;
-      width: 100%;
+      background-color: var(--accent-color-light, #f0f7ff);
+      color: var(--accent-color);
+      font-weight: 500;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--accent-color);
+      
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0.25rem;
+        background-color: var(--accent-color, #1677ff);
+        border-radius: 0.125rem;
+      }
+      
+      .icon {
+        color: var(--accent-color, #1677ff);
+        transform: scale(1.1);
+        margin-left: 0.5rem;
+      }
     }
-  
   
     .link {
       display: flex;
       align-items: center;
       color: inherit;
-      transition: padding 0.25s;
+      transition: all 0.25s ease;
       cursor: pointer;
+      width: 100%;
   
       &:hover {
         color: var(--accent-color);
@@ -40,18 +61,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 28px; 
-      height: 28px; 
-      margin-right: 8px; 
-      transition: width 0.3s, height 0.3s;
-  
-      &.active {
-        color: #222222;
-      }
+      width: 1.75rem; 
+      height: 1.75rem; 
+      margin-right: 0.5rem; 
+      transition: all 0.3s ease;
     }
   
     a {
-      text-decoration: none
+      text-decoration: none;
     }
     
     a.helper:hover {
@@ -60,14 +77,9 @@
     }
   
     .label {
-      font-size: 14px;
+      font-size: 0.875rem;
       white-space: nowrap; 
       text-decoration: none;
-    }
-  
-    .label {
-      font-size: 14px;
-      white-space: nowrap; 
-      text-decoration: none;
+      transition: all 0.3s ease;
     }
   }
