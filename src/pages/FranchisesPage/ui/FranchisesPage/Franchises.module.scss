@@ -1,5 +1,8 @@
 .FranchisesPage {
-    padding: 0 2rem;
-    margin-top: 2rem;
-    overflow-y: hidden;
+
+    @media (max-width: 576px) {
+        padding: 0 2rem;
+        margin-top: 2rem;
+        overflow-y: hidden;
+    }
 }
