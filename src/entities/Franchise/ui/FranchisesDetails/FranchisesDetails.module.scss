@@ -1,41 +1,69 @@
 .FranchisesDetails {
-    width: 80%;
+    width: 100%;
+    max-width: 70rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    
+    @media (max-width: 576px) {
+        padding: 0 0.5rem;
+        padding-bottom: 5rem;
+    }
 }
 
 .franchiseInfo {
+    margin-top: 1rem;
+    border: 1px solid var(--stroke);
     display: flex;
     background: var(--card-bg);
-    border-radius: 0.75rem;
     overflow: hidden;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--stroke);
+    border-radius: 1.25rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 }
 
 .poster {
-    width: 12rem;
-    height: 18rem;
+    width: 20rem;
+    height: 15rem;
     object-fit: cover;
     flex-shrink: 0;
+    border-radius: 0 0 0 1.25rem;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 100%;
+        border-radius: 1.25rem 1.25rem 0 0;
+    }
 }
 
 .mainInfo {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .title {
     color: var(--primary-color);
+    margin: 0;
+    word-break: break-word;
 }
 
 .subtitle {
-    color: var(--secondary-color);
+    color: var(--stroke);
     margin-top: 0.5rem;
     font-size: 1rem;
+    word-break: break-word;
+    
+    @media (max-width: 576px) {
+        font-size: 0.875rem;
+    }
 }
 
 .stats {
@@ -43,7 +71,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    color: var(--secondary-color);
+    color: var(--stroke);
 }
 
 .episodes {
@@ -53,19 +81,29 @@
 }
 
 .duration {
-    color: var(--secondary-color);
+    color: var(--stroke);
     font-size: 0.875rem;
 }
 
 .sectionTitle {
-    color: var(--inverted-primary-color);
-    text-align: center;
+    color: var(--primary-color);
+    text-align: left;
+    margin: 1rem 0 0.5rem;
+    font-size: 1.5rem;
+    align-self: flex-start;
+    width: 100%;
+    
+    @media (max-width: 576px) {
+        font-size: 1.25rem;
+    }
 }
 
 .releasesList {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--stroke);
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .releaseItem {
@@ -74,66 +112,100 @@
     color: inherit;
     transition: transform 0.2s ease;
     margin-bottom: 1rem;
-    margin: 0.5rem;
+    align-items: center;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 
     &:hover {
         transform: translateY(-0.25rem);
         
         .releaseCard {
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-            background: var(--stroke);
         }
+    }
+
+    @media (max-width: 576px) {
+        align-items: flex-start;
     }
 }
 
 .releaseNumber {
-    width: 3rem;
-    font-size: 1.5rem;
+    width: 2rem;
+    font-size: 1.25rem;
     font-weight: bold;
-    color: var(--secondary-color);
+    color: var(--stroke);
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    @media (max-width: 420px) {
+        width: 1.5rem;
+        font-size: 1rem;
+    }
 }
 
 .releaseCard {
     flex: 1;
     display: flex;
+    border: 1px solid var(--stroke);
     background: var(--card-bg);
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     overflow: hidden;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease;
+
+    @media (max-width: 576px) {
+        flex-direction: row;
+    }
 }
 
 .releasePoster {
-    width: 8rem;
-    height: 12rem;
+    width: 5rem;
+    height: 7rem;
     object-fit: cover;
     flex-shrink: 0;
 }
 
 .releaseInfo {
-    padding: 1rem;
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .releaseTitle {
-    color: var(--inverted-primary-color);
+    color: var(--primary-color);
+    margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    font-size: 1rem;
+    line-height: 1.25;
+    word-break: break-word;
+    
+    @media (max-width: 420px) {
+        font-size: 0.875rem !important;
+        -webkit-line-clamp: 3;
+    }
 }
 
 .releaseSubtitle {
-    color: var(--secondary-color);
+    color: var(--stroke);
     margin-top: 0.25rem;
     font-size: 0.875rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    
+    @media (max-width: 420px) {
+        font-size: 0.75rem;
+    }
 }
 
 .releaseDetails {
@@ -141,35 +213,21 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--secondary-color);
+    gap: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--stroke);
+    
+    @media (max-width: 420px) {
+        font-size: 0.7rem;
+    }
+}
+
+.dot {
+    color: var(--stroke);
 }
 
 .loading {
     opacity: 0.7;
-}
-
-@media (max-width: 768px) {
-    .franchiseInfo {
-        flex-direction: column;
-    }
-    
-    .poster {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 2/3;
-    }
-    
-    .releaseCard {
-        flex-direction: column;
-    }
-    
-    .releasePoster {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 2/3;
-    }
 }
 
 .noReleases {
@@ -178,4 +236,7 @@
     align-items: center;
     height: 100%;
     color: var(--secondary-color);
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 0.5rem;
 }

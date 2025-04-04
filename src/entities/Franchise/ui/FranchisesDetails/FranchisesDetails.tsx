@@ -4,9 +4,10 @@ import s from './FranchisesDetails.module.scss';
 import { Link } from "react-router-dom";
 import { AppRoutes } from "shared/config/routeConfig/routeConfig";
 import { FranchisesDetailsResponse } from "shared/api/services/franchises-anime/franchises-details/types";
-import { Typography, Skeleton, Card } from "antd";
+import { Typography } from "antd";
 import { observer } from "mobx-react-lite";
 import loaderFrame from "shared/assets/bg/loaderFrame.webp";
+import FranchisesDetailsSkeleton from "./FranchisesDetailsSkeleton";
 
 interface FranchisesDetailsProps {
     className?: string;
@@ -27,15 +28,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
 
     if (isLoading) {
         return (
-            <div className={classNames(s.FranchisesDetails, {}, [className, s.loading])}>
-                <div className={s.franchiseInfo}>
-                    <Skeleton.Image active className={s.poster} />
-                    <div className={s.mainInfo}>
-                        <Skeleton active paragraph={{ rows: 4 }} />
-                    </div>
-                </div>
-                <Skeleton active paragraph={{ rows: 6 }} />
-            </div>
+            <FranchisesDetailsSkeleton />
         );
     }
 
@@ -54,7 +47,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
     }
 
     const franchiseInfo = (
-        <Card className={s.franchiseInfo}>
+        <div className={s.franchiseInfo}>
             <img 
                 className={s.poster} 
                 src={franchise.image ? `${import.meta.env.VITE_IMG_URL}${franchise.image?.optimized?.preview}` : loaderFrame} 
@@ -75,11 +68,11 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
                     <Text className={s.duration}>{franchise?.total_duration}</Text>
                 </div>
             </div>
-        </Card>
+        </div>
     );
 
     const releasesList = franchise.franchise_releases?.length > 0 ? (
-        <Card className={s.releasesList}>
+        <div className={s.releasesList}>
             {franchise?.franchise_releases?.map((item, index) => (
                 <Link
                     key={item.id}
@@ -121,7 +114,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
                     </div>
                 </Link>
             ))}
-        </Card>
+        </div>
     ) : (
         <div className={s.noReleases}>
             <Text>{t('Нет доступных релизов')}</Text>
