@@ -2,6 +2,10 @@
     width: 100%;
     overflow: hidden;
     margin-top: 1rem;
+
+    .bannerTitle {
+        color: var(--inverted-bg-color);
+    }
 }
 
 .banner {
@@ -16,6 +20,10 @@
     height: 32rem;
     border-radius: 0.75rem;
     overflow: hidden;
+    
+    @media (max-width: 768px) {
+        height: 28rem;
+    }
 }
 
 .bannerImage {
@@ -27,7 +35,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    object-fit: fill;
+    object-fit: cover;
     z-index: 1;
     overflow: hidden;
 }
@@ -40,6 +48,10 @@
     height: 100%;
     background: linear-gradient(90deg, rgba(15, 9, 9, 0.9) 0%, rgba(15, 9, 9, 0.7) 50%, rgba(15, 9, 9, 0.4) 100%);
     z-index: 2;
+    
+    @media (max-width: 576px) {
+        background: linear-gradient(0deg, rgba(15, 9, 9, 0.95) 20%, rgba(15, 9, 9, 0.7) 60%, rgba(15, 9, 9, 0.4) 100%);
+    }
 }
 
 .bannerContent {
@@ -55,6 +67,39 @@
     h1, h5 {
         color: var(--inverted-bg-color);
     }
+    
+    @media (max-width: 768px) {
+        max-width: 80%;
+        padding: 1.5rem;
+        
+        h1 {
+            font-size: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        h5 {
+            font-size: 0.875rem;
+            line-height: 1.3;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        max-width: 100%;
+        padding: 1.5rem;
+        justify-content: center;
+        
+        h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        h5 {
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+        }
+    }
 }
 
 .bannerInfo {
@@ -66,11 +111,44 @@
         font-size: 1rem;
         margin-right: 1rem;
     }
+    
+    @media (max-width: 768px) {
+        margin-bottom: 1rem;
+        
+        span {
+            font-size: 0.875rem;
+            padding: 0.15rem 0.5rem;
+            margin-right: 0.5rem;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        
+        span {
+            font-size: 0.7rem;
+            margin-right: 0;
+            padding: 0 0.4rem;
+            line-height: 1.5;
+        }
+    }
 }
 
 .bannerYear, .bannerType, .bannerEpisodes {
     font-size: 1rem;
     margin-right: 1rem;
+    
+    @media (max-width: 768px) {
+        font-size: 0.875rem;
+    }
+    
+    @media (max-width: 576px) {
+        font-size: 0.7rem;
+        margin-right: 0.25rem;
+    }
 }
 
 .bannerOngoing {
@@ -79,16 +157,60 @@
     padding: 0.2rem 0.7rem;
     border-radius: 1rem;
     font-size: 0.875rem;
+    
+    @media (max-width: 768px) {
+        font-size: 0.875rem;
+        padding: 0.15rem 0.5rem;
+    }
+    
+    @media (max-width: 576px) {
+        font-size: 0.7rem;
+        padding: 0 0.4rem;
+        line-height: 1.5;
+    }
 }
 
 .bannerDescription {
     font-size: 1rem;
     line-height: 1.6;
+    
+    @media (max-width: 768px) {
+        font-size: 0.875rem;
+        line-height: 1.4;
+        -webkit-line-clamp: 4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    @media (max-width: 576px) {
+        font-size: 0.7rem;
+        line-height: 1.3;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 0.35rem;
+    }
 }
 
 .watchButton {
     width: fit-content;
     margin-top: 1rem;
+    
+    @media (max-width: 768px) {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        padding: 0.25rem 0.75rem;
+        height: auto;
+    }
+    
+    @media (max-width: 576px) {
+        margin-top: 0.35rem;
+        font-size: 0.7rem;
+        padding: 0 0.5rem;
+        height: 1.75rem;
+    }
 }
 
 
@@ -100,5 +222,11 @@
                 height: 100%;
             }
         }
+    }
+}
+
+@media (max-width: 576px) {
+    .bannerContainer {
+        margin-bottom: 4rem;
     }
 }

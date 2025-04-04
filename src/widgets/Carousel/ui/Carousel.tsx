@@ -35,7 +35,7 @@ export const Carousel = observer(() => {
                 style={{ backgroundImage: anime.poster?.optimized?.src ? `url(${import.meta.env.VITE_IMG_URL}${anime.poster.optimized.src})` : `url(${loaderFrame})` }}
             />
             <div className={s.bannerContent}>
-                <Title level={1} className={s.bannerTitle}>{anime.name.main}</Title>
+                <Title level={3} className={s.bannerTitle}>{anime.name.main}</Title>
                 <Space className={s.bannerInfo}>
                     <Tag className={s.bannerYear}>{anime.year}</Tag>
                     <Tag className={s.bannerType}>{anime.type.description}</Tag>
