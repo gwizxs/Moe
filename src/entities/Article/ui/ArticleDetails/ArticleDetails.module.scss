@@ -98,6 +98,9 @@
     width: 100%;
     height: 100%;
     padding: 1rem;
+    @media (max-width: 576px) {
+        padding: 0;
+    }
 }
 
 .episodeRow {

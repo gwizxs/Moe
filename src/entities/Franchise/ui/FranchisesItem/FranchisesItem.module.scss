@@ -1,5 +1,5 @@
 .FranchisesItem {
-    width: 25rem;
+    width: 35rem;
     padding: 0.5rem;
     text-decoration: none;
     display: block;
@@ -9,6 +9,18 @@
     background: rgba(32, 32, 32, 0.6);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 576px) {
+        padding: 0.25rem;
+        max-width: 100%;
+    }
 
     &:hover {
         transform: translateY(-0.25rem);
@@ -25,24 +37,44 @@
 }
 
 .card {
-    width: 100%;
+    width: 35rem;
     background: transparent;
     border: none;
     border-radius: 0.75rem;
     overflow: hidden;
     display: flex;
 
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+
+    @media (max-width: 576px) {
+        flex-direction: column;
+    }
+
     :global(.ant-card-body) {
         padding: 0;
         width: 100%;
         display: flex;
+
+        @media (max-width: 576px) {
+            flex-direction: column;
+        }
     }
 
     :global(.ant-card-cover) {
         margin: 0;
-        width: 10rem;
-        height: 15rem;
+        width: 12rem;
         flex-shrink: 0;
+
+        @media (max-width: 768px) {
+            width: 10rem;
+        }
+
+        @media (max-width: 576px) {
+            width: 100%;
+            height: 12rem;
+        }
     }
 }
 
@@ -50,9 +82,18 @@
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 15rem;
+    min-height: 16rem;
     overflow: hidden;
     background: #1a1a1a;
+
+    @media (max-width: 768px) {
+        min-height: 14rem;
+    }
+
+    @media (max-width: 576px) {
+        min-height: 12rem;
+        height: 12rem;
+    }
 }
 
 .image {
@@ -66,57 +107,101 @@
 }
 
 .content {
-    padding: 1rem;
+    padding: 1.5rem;
     background: rgba(32, 32, 32, 0.6);
     transition: background 0.3s ease;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
+
+    @media (max-width: 576px) {
+        padding: 0.75rem;
+    }
 }
 
 .title {
     color: var(--inverted-bg-color);
-    font-size: 1.125rem;
+    font-size: larger;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     word-break: break-word;
+
+    @media (max-width: 576px) {
+        font-size: 1rem;
+        line-height: 1.3;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+    }
 }
 
 .subtitle {
     display: block;
     margin-top: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.7) !important;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    @media (max-width: 768px) {
+        font-size: 0.875rem;
+    }
+
+    @media (max-width: 576px) {
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+    }
 }
 
 .info {
     margin-top: auto !important;
     width: 100%;
+
+    @media (max-width: 576px) {
+        margin-top: 0.5rem !important;
+    }
 }
 
 .years {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 0.5rem;
+
+    @media (max-width: 576px) {
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
 }
 
 .stats {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.5);
 
+    @media (max-width: 576px) {
+        font-size: 0.75rem;
+    }
+
     :global(.ant-typography) {
         color: rgba(255, 255, 255, 0.5);
+
+        @media (max-width: 576px) {
+            font-size: 0.75rem;
+        }
     }
 } 
 
 .duration {
     color: var(--inverted-bg-color);
+
+    @media (max-width: 576px) {
+        font-size: 0.75rem;
+    }
 }

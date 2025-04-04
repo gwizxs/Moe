@@ -7,6 +7,7 @@ import { useStore } from "app/providers/StoreProvider";
 import { useEffect } from "react";
 import { FranchisesResponse } from "shared/api/services/franchises-anime/types";
 import { FranchisesPageHeader } from "../FranchisesPageHeader/FranchisesPageHeader";
+import { isDesktop } from "react-device-detect";
 
 interface FranchisesPageProps {
     className?: string;
@@ -25,7 +26,7 @@ export const FranchisesPage = observer(({ className }: FranchisesPageProps) => {
 
     return (
         <Page className={classNames(s.FranchisesPage, {}, [className])}>
-            <FranchisesPageHeader />
+            {isDesktop && <FranchisesPageHeader />}
             <FranchisesList 
                 franchises={franchisesStoreAnime.franchisesDataAll?.value as FranchisesResponse}
                 isLoading={franchisesStoreAnime.franchisesDataAll?.state === "pending"}
