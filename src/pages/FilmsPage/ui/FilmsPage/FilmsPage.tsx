@@ -8,6 +8,7 @@ import { useStore } from "app/providers/StoreProvider";
 import { ArticleList, ArticleView } from "entities/Article";
 import { Typography } from "antd";
 import { useTranslation } from "react-i18next";
+import { isDesktop } from "react-device-detect";
 interface FilmsPageProps {
     className?: string;
 }
@@ -37,9 +38,11 @@ export const FilmsPage = observer(({ className }: FilmsPageProps) => {
 
     return (
         <Page className={classNames(s.FilmsPage, {}, [className])}>
-            <div className={s.wrapper}>
-                <ArticleViewSwitcher view={articlesViewStore.view} onViewClick={onChangeView} />
-            </div>
+            {isDesktop && (
+                <div className={s.wrapper}>
+                    <ArticleViewSwitcher view={articlesViewStore.view} onViewClick={onChangeView} />
+                </div>
+            )}
             <ArticleList
                 isLoading={releasesStoreAnime.releasesData?.state === "pending"}
                 view={articlesViewStore.view}
