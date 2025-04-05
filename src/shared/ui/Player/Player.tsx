@@ -1,4 +1,4 @@
-import { TvMinimalPlay } from "lucide-react";
+import { Sidebar, TvMinimalPlay } from "lucide-react";
 import ReactPlayer from "react-player";
 import { useRef, useState, useEffect } from "react";
 import classNames from "classnames";
@@ -6,6 +6,8 @@ import s from "./Player.module.scss";
 import { Button, Select, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 import loaderFrame from "shared/assets/bg/loaderFrame.webp";
+import { BackBtn } from "../BackBtn/BackBtn";
+import { SidebarWithPlayer } from "widgets/SidebarWithPlayer";
 
 type Preview = { src: string; thumbnail: string; } | string;
 type Opening = { start: number; stop: number };
@@ -25,7 +27,7 @@ const { Title } = Typography;
 
 export const Player = (props: PlayerProps) => {
     const {
-        url, 
+        url,
         url720,
         url480,
         className,
@@ -33,12 +35,13 @@ export const Player = (props: PlayerProps) => {
         ending,
         preview
     } = props;
-    
+
     const playerRef = useRef<ReactPlayer | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [quality, setQuality] = useState<string>('480');
     const [currentUrl, setCurrentUrl] = useState<string>(url);
     const { t } = useTranslation("Player");
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const previewUrl = preview ? (typeof preview === 'object' ? preview.src : preview) : loaderFrame;
 
@@ -49,20 +52,20 @@ export const Player = (props: PlayerProps) => {
 
     useEffect(() => {
         let newUrl = url;
-        
+
         if (quality === '720' && url720) {
             newUrl = url720;
         } else if (quality === '480' && url480) {
             newUrl = url480;
         }
-        
+
         const currentPosition = currentTime;
         setCurrentUrl(newUrl);
 
         setTimeout(() => {
             playerRef.current?.seekTo(currentPosition, "seconds");
         }, 500);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quality, url, url720, url480]);
 
     const handleProgress = (state: { playedSeconds: number }) => {
@@ -96,6 +99,15 @@ export const Player = (props: PlayerProps) => {
                         onError={(e) => console.error("ReactPlayer error:", e)}
                         previewTabIndex={1}
                     />
+                    <BackBtn className={s.backBtn} />
+                    <Button
+                        type="dashed"
+                        className={s.sidebarBtn}
+                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                    >
+                        <Sidebar />
+                    </Button>
+                    {isSidebarOpen && <SidebarWithPlayer />}
                     <div className={s.controls}>
                         {opening && currentTime >= opening.start && currentTime < opening.stop && (
                             <Button

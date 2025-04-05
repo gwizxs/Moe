@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import classNames from 'shared/library/classNames/classNames';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher';
 import { LangSwitcher } from 'widgets/LangSwitcher';
-import { SearchModal } from 'widgets/SearchModal/SearchModal';
+import { SearchModal } from 'widgets/SearchModal/ui/SearchModal';
 import { NavbarItems } from 'widgets/NavbarNotReg/ui/NavbarItems/NavbarItems';
 import { menu } from 'shared/constants/menu';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';

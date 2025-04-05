@@ -8,7 +8,7 @@ import { NavbarItems } from 'widgets/NavbarNotReg/ui/NavbarItems/NavbarItems';
 import { menu } from 'shared/constants/menu';
 import { Search } from 'lucide-react';
 import { useState } from 'react';
-import { SearchModal } from 'widgets/SearchModal/SearchModal';
+import { SearchModal } from 'widgets/SearchModal/ui/SearchModal';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 

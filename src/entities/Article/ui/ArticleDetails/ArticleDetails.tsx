@@ -117,7 +117,6 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                                         pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime.alias}`,
                                         search: `id=${anime.id}&sort_order=${episode.sort_order}`,
                                     }}
-                                    target="_blank"
                                     key={episode.id}
                                     className={s.episodeCard}
                                     onClick={onEpisodeClick}

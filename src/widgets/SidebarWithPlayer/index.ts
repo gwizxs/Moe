@@ -1,0 +1,1 @@
+export { SidebarWithPlayer } from "./ui/SidebarWithPlayer"
