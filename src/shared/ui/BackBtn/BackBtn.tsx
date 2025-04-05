@@ -12,7 +12,7 @@ export const BackBtn = (props: BackBtnProps) => {
     const navigate = useNavigate()
     return (
         <Button
-            type="dashed"
+            type="primary"
             className={classNames(s.BackBtn, {}, [className])}
             onClick={() => navigate(-1)}
         >

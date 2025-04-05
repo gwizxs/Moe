@@ -8,6 +8,7 @@ import { Typography } from "antd";
 import { observer } from "mobx-react-lite";
 import loaderFrame from "shared/assets/bg/loaderFrame.webp";
 import FranchisesDetailsSkeleton from "./FranchisesDetailsSkeleton";
+import { BackBtn } from "shared/ui/BackBtn/BackBtn";
 
 interface FranchisesDetailsProps {
     className?: string;
@@ -123,6 +124,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
 
     return (
         <div className={classNames(s.FranchisesDetails, {}, [className])}>
+            <BackBtn className={s.backBtn}/>
             {franchiseInfo}
             <Title level={2} className={s.sectionTitle}>{t('Содержание франшизы')}</Title>
             {releasesList}

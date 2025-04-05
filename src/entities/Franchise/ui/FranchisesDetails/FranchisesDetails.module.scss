@@ -20,6 +20,14 @@
 
 }
 
+
+.backBtn {
+    position: absolute;
+    top: 6rem;
+    left: 1rem;
+    z-index: 100000;
+}
+
 .franchiseInfo {
     margin-top: 1rem;
     border: 1px solid var(--stroke);

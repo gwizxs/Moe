@@ -8,8 +8,8 @@
 
 .sidebarBtn {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1;
+    left: 0;
 }
 
 .Player {
@@ -21,6 +21,7 @@
     width: 100vw;
     margin-top: 0.5rem;
     height: calc(100vh - var(--navbar-height));
+    overflow-y: none;
     
 
 

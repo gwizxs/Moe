@@ -11,6 +11,7 @@ import VirtualList from "rc-virtual-list";
 import { useEffect, useRef, useMemo, useState, useCallback } from "react"
 import debounce from "lodash.debounce"
 import { useUpdateDimensions } from "shared/library/hooks/useUpdateDimensions"
+import { BackBtn } from "shared/ui/BackBtn/BackBtn"
 
 interface ArticleListItemProps {
     className?: string
@@ -150,6 +151,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
     return (
         <>
             <Card className={classNames(s.AnimeCard, {}, [className])}>
+                <BackBtn className={s.backBtn} />
                 <Row gutter={[16, 16]}>
                     <Col flex="15.625rem">
                         {anime?.poster?.optimized?.src && (
@@ -181,12 +183,12 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                             </Descriptions.Item>
                             <Descriptions.Item label={t("Год выхода")}>{anime?.year}</Descriptions.Item>
                         </Descriptions>
-                        <Link
-                            to={{
-                                pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime?.alias}`,
-                                search: `id=${anime?.id}&sort_order=1`,
-                            }}
-                            target="_blank"
+                        {!anime?.is_blocked_by_geo ? (
+                            <Link
+                                to={{
+                                    pathname: `/${AppRoutes.ANIME_DETAILS_VIDEO}/${anime?.alias}`,
+                                    search: `id=${anime?.id}&sort_order=1`,
+                                }}
                             onClick={onEpisodeClick}
                         >
                             <Button
@@ -194,8 +196,11 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                                 className={s.watchButton}
                         >
                             {t("Смотреть с 1 эпизода")}
-                        </Button>
+                            </Button>
                         </Link>
+                        ): (
+                            <Tag className={s.notAvailable} color="red">{"Недоступно в вашем регионе"}</Tag>
+                        )}
                     </Col>
                     {anime?.description && (
                         <Col span={24}>
