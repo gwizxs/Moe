@@ -26,7 +26,11 @@ export const NavbarMobile = ({ className }: NavbarMobileProps) => {
       <header className={classNames(s.header, {}, [className])}>
         <Flex justify="space-between" align="center" gap="small" flex={1} className={s.headerContent}>
           <div className={s.logo}>
-            <Title level={3} className={s.logoText} onClick={() => navigate(RoutePath[AppRoutes.LANDING])}>Moe</Title>
+            <Title level={3} className={s.logoText}
+              onClick={() => navigate(RoutePath[AppRoutes.LANDING])}
+            >
+              Moe
+            </Title>
           </div>
           <Flex gap="small" align="center">
             <Button type="default" className={s.navButton} onClick={() => setIsSearchModalOpen(true)}>
@@ -44,9 +48,9 @@ export const NavbarMobile = ({ className }: NavbarMobileProps) => {
         </Flex>
       </nav>
 
-      <SearchModal 
-        isOpen={isSearchModalOpen} 
-        onClose={() => setIsSearchModalOpen(false)} 
+      <SearchModal
+        isOpen={isSearchModalOpen}
+        onClose={() => setIsSearchModalOpen(false)}
       />
     </>
   );

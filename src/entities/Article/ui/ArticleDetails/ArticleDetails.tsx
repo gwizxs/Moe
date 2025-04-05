@@ -18,6 +18,8 @@ interface ArticleListItemProps {
     onEpisodeClick?: () => void;
 }
 
+const ITEM_HEIGHT = 320;
+
 const { Paragraph, Title } = Typography;
 
 export const ArticleDetails = observer((props: ArticleListItemProps) => {
@@ -47,8 +49,6 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         const containerRef = useRef<HTMLDivElement>(null);
         const [containerHeight, setContainerHeight] = useState(800);
         const [itemsPerRow, setItemsPerRow] = useState(2);
-        
-        const ITEM_HEIGHT = 320;
 
         const updateDimensions = useUpdateDimensions(
             containerRef,
@@ -70,6 +70,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
             const handleResize = debounce(() => {
                 updateDimensions();
             }, 800);
+
             
             window.addEventListener('resize', handleResize);
             return () => window.removeEventListener('resize', handleResize);
@@ -84,7 +85,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                 result.push(rowItems);
             }
             return result;
-        }, [anime?.episodes, itemsPerRow]);
+        }, [itemsPerRow]);
 
         const getRowKey = useCallback((row: Episode[]) => {
             return row.map(item => item.id).join('-');
@@ -106,7 +107,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
                     itemHeight={ITEM_HEIGHT}
                     itemKey={getRowKey}
                     className={s.virtualList}
-                    showScrollBar
+                    showScrollBar={false}
                 >
                     {(row: Episode[]) => (
                         <div className={s.episodeRow}>
