@@ -1,4 +1,18 @@
 {
     "Короткий язык": "En",
-    "Язык": "English"
+    "Язык": "English",
+    "Главная": "Home",
+    "Релизы": "Release",
+    "Сериалы": "Series",
+    "Франшизы": "Franchises",
+    "Смотреть": "Watch",
+    "Страница не найдена": "Page not found",
+    "Произошла непредвиденная ошибка": "An unexpected error occurred",
+    "Обновить страницу": "Refresh page",
+    "эпизод": "episode",
+    "Эпизоды не найдены": "Episodes not found",
+    "Ничего не найдено": "Nothing found",
+    "Ошибка загрузки данных": "Error loading data",
+    "эпизодов": "episodes",
+    "Онгоинг": "Ongoing"
 }

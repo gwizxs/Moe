@@ -26,7 +26,7 @@ export const ArticleListItem = observer((props: ArticleListItemProps) => {
         onClick
     } = props
 
-    const { t } = useTranslation('Projects')
+    const { t } = useTranslation()
 
     const ArticleTags = () => {
         return (

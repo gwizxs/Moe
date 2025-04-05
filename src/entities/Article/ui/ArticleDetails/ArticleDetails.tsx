@@ -94,7 +94,7 @@ export const ArticleDetails = observer((props: ArticleListItemProps) => {
         if (!anime?.episodes?.length) {
             return (
                 <div className={s.emptyState}>
-                    {t('Эпизоды не найдены')}
+                    {t("Эпизоды не найдены")}
                 </div>
             );
         }

@@ -22,7 +22,7 @@ export const SearchModal = observer((props: SearchModalProps) => {
         onClose
     } = props
     const [query, setQuery] = useState('')
-    const { t } = useTranslation();
+    const { t } = useTranslation("SearchModal");
     const { searchAnimeStore } = useStore();
 
     const handleSearch = useCallback(() => {

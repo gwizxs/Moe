@@ -24,7 +24,7 @@ export const FranchisesDetails = observer((props: FranchisesDetailsProps) => {
         isLoading
     } = props;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation("FranchisesDetails");
 
     if (isLoading) {
         return (

@@ -21,7 +21,7 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
   const [searchParams] = useSearchParams();
   const [episode, setEpisode] = useState<Episode | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslation("animeDetailsVideoPage");
 
   const id = searchParams.get("id");
   const sortOrderParam = searchParams.get("sort_order");

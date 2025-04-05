@@ -38,7 +38,7 @@ export const Player = (props: PlayerProps) => {
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [quality, setQuality] = useState<string>('480');
     const [currentUrl, setCurrentUrl] = useState<string>(url);
-    const { t } = useTranslation();
+    const { t } = useTranslation("Player");
 
     const previewUrl = preview ? (typeof preview === 'object' ? preview.src : preview) : loaderFrame;
 
