@@ -108,7 +108,7 @@ export const Player = (props: PlayerProps) => {
                     >
                         <Sidebar />
                     </Button>
-                    {isSidebarOpen && <SidebarWithPlayer />}
+                    {/* {isSidebarOpen && <SidebarWithPlayer />} */}
                     <div className={s.controls}>
                         {opening && currentTime >= opening.start && currentTime < opening.stop && (
                             <Button
