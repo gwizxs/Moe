@@ -1,15 +1,21 @@
 
 .backBtn {
     position: absolute;
-    top: 0;
-    left: 0;
+    left: 1.5rem;
     z-index: 1000;
+    bottom: calc(90vh - var(--navbar-height));
 }
 
 .sidebarBtn {
     position: absolute;
-    top: 1;
-    left: 0;
+    bottom: 5rem;
+    left: 1.5rem;
+    z-index: 3;
+
+    @media (max-width: 768px) {
+        bottom: 5rem;
+        left: 0;
+    }
 }
 
 .Player {
@@ -17,18 +23,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 100vw;
-    margin-top: 0.5rem;
     height: calc(100vh - var(--navbar-height));
+    width: 100vw;
     overflow-y: none;
     
 
 
     video {
-        padding: 0;
         width: 100vw;
         height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
         object-fit: contain;
         border-radius: 0.5rem;
     }
@@ -43,7 +50,7 @@
 
 @media (max-width: 768px) {
     .Player {
-        width: 95vw;
+        width: 100vw;
         height: 40vh;
         position: absolute;
         top: 50%;
@@ -74,6 +81,11 @@
     z-index: 3;
     display: flex;
     align-items: center;
+
+    @media (max-width: 768px) {
+        bottom: 5rem;
+        right: 0;
+    }
     
     .qualitySelect {
         min-width: 80px;

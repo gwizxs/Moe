@@ -83,6 +83,8 @@ export const Player = (props: PlayerProps) => {
     ];
 
     return (
+        <>
+            <BackBtn className={s.backBtn} />
         <section className={classNames(s.Player, {}, [className])}>
             {currentUrl ? (
                 <>
@@ -99,7 +101,6 @@ export const Player = (props: PlayerProps) => {
                         onError={(e) => console.error("ReactPlayer error:", e)}
                         previewTabIndex={1}
                     />
-                    <BackBtn className={s.backBtn} />
                     <Button
                         type="dashed"
                         className={s.sidebarBtn}
@@ -111,7 +112,6 @@ export const Player = (props: PlayerProps) => {
                     <div className={s.controls}>
                         {opening && currentTime >= opening.start && currentTime < opening.stop && (
                             <Button
-                                size="large"
                                 className={s.skipButton}
                                 onClick={() => playerRef.current?.seekTo(opening.stop, "seconds")}
                             >
@@ -142,6 +142,7 @@ export const Player = (props: PlayerProps) => {
                 <Title className={s.errorTitle} level={5}>{t('URL отсутствует или некорректный')}</Title>
             )}
         </section>
+        </>
     );
 };
 
