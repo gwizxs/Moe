@@ -92,7 +92,7 @@ export const Player = (props: PlayerProps) => {
             }, 300);
         } else {
             setIsSidebarOpen(true);
-            // Небольшая задержка перед появлением для запуска анимации
+
             setTimeout(() => {
                 setSidebarVisible(true);
             }, 50);

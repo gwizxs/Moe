@@ -18,7 +18,6 @@ export class ReleasesStoreDetailsAnime {
     }
 
     getReleasesDetailsAnimeAction = async (id: number) => {
-        // Сбрасываем данные при каждом запросе
         this.error = undefined;
         this.currentAnimeId = id;
         this.currentAnime = undefined;
