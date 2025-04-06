@@ -79,6 +79,7 @@ export interface ReleaseDetailsAnime {
   }
   
   export interface Episode {
+    title: any;
     id: string;
     name: string;
     ordinal: number;

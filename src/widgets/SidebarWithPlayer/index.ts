@@ -1,1 +1,1 @@
-export { SidebarWithPlayer } from "./ui/SidebarWithPlayer/SidebarWithPlayer"
+export { SidebarWithPlayer } from './ui/SidebarWithPlayer/SidebarWithPlayer';

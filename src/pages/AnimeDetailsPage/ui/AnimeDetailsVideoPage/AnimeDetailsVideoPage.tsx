@@ -18,7 +18,7 @@ const { Title } = Typography;
 
 export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoPageProps) => {
   const { releasesStoreDetailsAnime } = useStore();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [episode, setEpisode] = useState<Episode | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation("animeDetailsVideoPage");
@@ -62,6 +62,13 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
     return `${import.meta.env.VITE_IMG_URL}${episode.preview.src}`;
   };
 
+  const handleEpisodeSelect = (selectedEpisode: Episode) => {
+    setSearchParams(prev => {
+      prev.set("sort_order", selectedEpisode.sort_order.toString());
+      return prev;
+    });
+  };
+
   return (
     <Page className={classNames(s.AnimeDetailsVideoPage, {}, [className])}>
       {isLoading && <PageLoader />}
@@ -76,6 +83,9 @@ export const AnimeDetailsVideoPage = observer(({ className }: AnimeDetailsVideoP
           opening={episode.opening}
           ending={episode.ending}
           preview={getPreviewUrl()}
+          episodes={releasesStoreDetailsAnime.episodes}
+          currentEpisode={sortOrder}
+          onEpisodeSelect={handleEpisodeSelect}
         />
       ) : !isLoading && (
         <div className={s.error}>

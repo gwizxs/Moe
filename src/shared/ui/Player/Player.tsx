@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import loaderFrame from "shared/assets/bg/loaderFrame.webp";
 import { BackBtn } from "../BackBtn/BackBtn";
 import { SidebarWithPlayer } from "widgets/SidebarWithPlayer";
+import { Episode } from "shared/api/services/releases-anime-details/types";
 
 type Preview = { src: string; thumbnail: string; } | string;
 type Opening = { start: number; stop: number };
@@ -21,6 +22,9 @@ interface PlayerProps {
     opening?: Opening;
     ending?: Ending;
     preview?: Preview;
+    episodes: Episode[];
+    currentEpisode?: number;
+    onEpisodeSelect?: (episode: Episode) => void;
 }
 
 const { Title } = Typography;
@@ -33,15 +37,19 @@ export const Player = (props: PlayerProps) => {
         className,
         opening,
         ending,
-        preview
+        preview,
+        episodes,
+        currentEpisode,
+        onEpisodeSelect,
     } = props;
 
     const playerRef = useRef<ReactPlayer | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [quality, setQuality] = useState<string>('480');
     const [currentUrl, setCurrentUrl] = useState<string>(url);
+    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+    const [sidebarVisible, setSidebarVisible] = useState<boolean>(false);
     const { t } = useTranslation("Player");
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const previewUrl = preview ? (typeof preview === 'object' ? preview.src : preview) : loaderFrame;
 
@@ -76,6 +84,21 @@ export const Player = (props: PlayerProps) => {
         setQuality(value);
     };
 
+    const toggleSidebar = () => {
+        if (isSidebarOpen) {
+            setSidebarVisible(false);
+            setTimeout(() => {
+                setIsSidebarOpen(false);
+            }, 300);
+        } else {
+            setIsSidebarOpen(true);
+            // Небольшая задержка перед появлением для запуска анимации
+            setTimeout(() => {
+                setSidebarVisible(true);
+            }, 50);
+        }
+    };
+
     const qualityOptions = [
         { value: '1080', label: '1080p', disabled: !url },
         { value: '720', label: '720p', disabled: !url720 },
@@ -104,11 +127,19 @@ export const Player = (props: PlayerProps) => {
                     <Button
                         type="dashed"
                         className={s.sidebarBtn}
-                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                        onClick={toggleSidebar}
+                        aria-label={t("Открыть список эпизодов")}
                     >
                         <Sidebar />
                     </Button>
-                    {/* {isSidebarOpen && <SidebarWithPlayer />} */}
+                    {isSidebarOpen && (
+                        <SidebarWithPlayer 
+                            episodes={episodes} 
+                            currentEpisode={currentEpisode}
+                            onEpisodeSelect={onEpisodeSelect}
+                            isVisible={sidebarVisible}
+                        />
+                    )}
                     <div className={s.controls}>
                         {opening && currentTime >= opening.start && currentTime < opening.stop && (
                             <Button
