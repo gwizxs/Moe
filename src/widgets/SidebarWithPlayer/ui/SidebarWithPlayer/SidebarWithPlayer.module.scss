@@ -13,6 +13,11 @@
     transition: all 0.3s ease-in-out;
     opacity: 0;
     visibility: hidden;
+
+    @media (max-width: 768px) {
+        width: 22rem;
+        height: 80%;
+    }
     
     &.visible {
         right: 0;
